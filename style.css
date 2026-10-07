@@ -1,6 +1,5 @@
 /* =========================================================
-   DIGITAL ORIGAMI LETTER
-   style.css
+   DIGITAL ORIGAMI CRANE LETTER
 ========================================================= */
 
 * {
@@ -10,10 +9,6 @@
 }
 
 
-/* =========================================================
-   VARIABLES
-========================================================= */
-
 :root {
 
     --paper:
@@ -22,8 +17,8 @@
     --paper-light:
         #fffaf0;
 
-    --paper-dark:
-        #dfd1b1;
+    --paper-shadow:
+        rgba(48,39,25,.20);
 
     --ink:
         #29251f;
@@ -31,31 +26,29 @@
     --muted:
         #766f63;
 
-    --accent:
-        #6c5a45;
+    --line:
+        rgba(66,53,34,.16);
 
-    --border:
-        rgba(60, 48, 33, 0.15);
+    --crane:
+        #eee3c8;
 
-    --shadow:
-        rgba(40, 31, 19, 0.20);
+    --crane-dark:
+        #d2c19d;
 
     --ease:
-        cubic-bezier(.2, .78, .2, 1);
+        cubic-bezier(.18,.82,.2,1);
 
 }
 
 
 /* =========================================================
-   HTML / BODY
+   PAGE
 ========================================================= */
 
 html,
 body {
-
     width: 100%;
     min-height: 100%;
-
 }
 
 
@@ -63,26 +56,25 @@ body {
 
     font-family:
         Inter,
-        ui-sans-serif,
         system-ui,
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
-        Arial,
         sans-serif;
 
     color:
         var(--ink);
 
+    overflow-x:
+        hidden;
+
     background:
         radial-gradient(
             circle at 50% 20%,
             #ffffff 0%,
-            #f8f5ee 35%,
-            #e9e4d9 100%
+            #f7f3eb 35%,
+            #e8e2d7 100%
         );
-
-    overflow-x: hidden;
 
 }
 
@@ -93,16 +85,14 @@ body {
 
 .app {
 
-    min-height: 100vh;
+    min-height:
+        100vh;
 
     display:
         flex;
 
     flex-direction:
         column;
-
-    position:
-        relative;
 
 }
 
@@ -113,8 +103,8 @@ body {
 
 .topbar {
 
-    width: 100%;
-    height: 76px;
+    height:
+        76px;
 
     padding:
         0 32px;
@@ -211,9 +201,6 @@ body {
     display:
         flex;
 
-    align-items:
-        center;
-
     gap:
         8px;
 
@@ -260,9 +247,7 @@ body {
         uppercase;
 
     transition:
-        transform .2s ease,
-        background .2s ease,
-        box-shadow .2s ease;
+        .2s ease;
 
 }
 
@@ -273,7 +258,7 @@ body {
         translateY(-2px);
 
     background:
-        rgba(255,255,255,.9);
+        #ffffff;
 
     box-shadow:
         0 10px 30px
@@ -288,18 +273,10 @@ body {
         #2d2923;
 
     color:
-        #ffffff;
+        white;
 
     border-color:
         #2d2923;
-
-}
-
-
-.btn.primary:hover {
-
-    background:
-        #16130f;
 
 }
 
@@ -321,9 +298,6 @@ body {
 
 .eyebrow {
 
-    margin-bottom:
-        13px;
-
     color:
         var(--muted);
 
@@ -339,6 +313,9 @@ body {
     text-transform:
         uppercase;
 
+    margin-bottom:
+        13px;
+
 }
 
 
@@ -350,13 +327,13 @@ body {
         serif;
 
     font-size:
-        clamp(42px, 6vw, 72px);
-
-    line-height:
-        .95;
+        clamp(42px,6vw,72px);
 
     font-weight:
         400;
+
+    line-height:
+        .95;
 
     letter-spacing:
         -.05em;
@@ -367,17 +344,16 @@ body {
 .hero p {
 
     max-width:
-        620px;
+        630px;
 
     margin:
-        18px auto 0;
+        18px auto;
 
     color:
         #736c61;
 
     font-family:
         Georgia,
-        "Times New Roman",
         serif;
 
     font-size:
@@ -399,7 +375,7 @@ body {
         1;
 
     min-height:
-        650px;
+        680px;
 
     position:
         relative;
@@ -414,13 +390,13 @@ body {
         center;
 
     padding:
-        45px 20px 80px;
+        40px 20px 90px;
 
 }
 
 
 /* =========================================================
-   PAPER SHADOW
+   SHADOW
 ========================================================= */
 
 .paper-shadow {
@@ -429,45 +405,41 @@ body {
         absolute;
 
     width:
-        min(75vw,760px);
+        min(70vw,760px);
 
     height:
-        min(30vw,300px);
+        250px;
+
+    background:
+        rgba(48,40,27,.16);
+
+    filter:
+        blur(38px);
 
     border-radius:
         50%;
 
-    background:
-        rgba(54,44,30,.14);
-
-    filter:
-        blur(40px);
-
     transform:
-        translateY(145px)
-        scale(.85);
+        translateY(150px)
+        scale(.9);
 
     transition:
-        transform 1.1s var(--ease),
-        opacity 1.1s ease;
+        1s var(--ease);
 
 }
 
 
 /* =========================================================
-   3D SCENE
+   SCENE
 ========================================================= */
 
 .scene {
 
     width:
-        min(88vw,820px);
+        min(920px,92vw);
 
     height:
-        min(62vw,540px);
-
-    max-height:
-        540px;
+        min(620px,65vw);
 
     position:
         relative;
@@ -500,71 +472,63 @@ body {
         relative;
 
     width:
-        min(82vw,720px);
+        min(760px,80vw);
 
-    aspect-ratio:
-        1.45 / 1;
+    height:
+        min(520px,54vw);
 
     transform-style:
         preserve-3d;
 
-    transform-origin:
-        center center;
-
     transition:
-        width 1s ease,
-        transform 1.15s var(--ease);
+        width 1s var(--ease),
+        height 1s var(--ease),
+        transform 1.2s var(--ease);
 
 }
 
 
 /* =========================================================
-   PANEL
+   GENERIC PAPER SHEET
 ========================================================= */
 
-.panel {
+.sheet {
 
     position:
         absolute;
 
-    overflow:
-        hidden;
-
     background:
         linear-gradient(
-            135deg,
+            145deg,
             var(--paper-light),
             var(--paper)
         );
 
     border:
-        1px solid rgba(88,71,47,.18);
+        1px solid rgba(87,67,39,.16);
 
     box-shadow:
-        0 18px 50px
-        rgba(48,40,28,.12),
+        inset 0 0 35px
+        rgba(110,87,47,.04);
 
-        inset 0 0 30px
-        rgba(100,80,45,.04);
-
-    backface-visibility:
+    overflow:
         hidden;
 
     transform-style:
         preserve-3d;
 
+    backface-visibility:
+        hidden;
+
     transition:
         transform 1.15s var(--ease),
-        opacity 1s ease;
+        opacity .8s ease,
+        clip-path 1.15s var(--ease);
 
 }
 
 
-/* =========================================================
-   PAPER TEXTURE
-========================================================= */
-
-.panel::before {
+.sheet::before {
 
     content:
         "";
@@ -575,14 +539,14 @@ body {
     inset:
         0;
 
-    pointer-events:
-        none;
+    opacity:
+        .65;
 
     background:
         repeating-linear-gradient(
             0deg,
-            rgba(100,82,54,.025) 0px,
-            rgba(100,82,54,.025) 1px,
+            rgba(100,80,50,.025) 0,
+            rgba(100,80,50,.025) 1px,
             transparent 1px,
             transparent 4px
         );
@@ -591,80 +555,43 @@ body {
 
 
 /* =========================================================
-   INNER BORDER
+   MAIN SHEET
 ========================================================= */
 
-.panel::after {
-
-    content:
-        "";
-
-    position:
-        absolute;
+.sheet-main {
 
     left:
-        5%;
+        0;
 
     top:
-        5%;
+        0;
 
     width:
-        90%;
+        100%;
 
     height:
-        90%;
+        100%;
 
-    border:
-        1px solid
-        rgba(78,63,42,.12);
-
-    pointer-events:
-        none;
+    z-index:
+        1;
 
 }
 
 
 /* =========================================================
-   CENTER
+   FOLD PANELS
 ========================================================= */
 
-.panel.center {
+.fold-left {
 
     left:
-        25%;
+        0;
 
     top:
         0;
 
     width:
         50%;
-
-    height:
-        100%;
-
-    z-index:
-        4;
-
-    transform-origin:
-        center bottom;
-
-}
-
-
-/* =========================================================
-   LEFT
-========================================================= */
-
-.panel.left {
-
-    left:
-        0;
-
-    top:
-        0;
-
-    width:
-        25%;
 
     height:
         100%;
@@ -675,14 +602,13 @@ body {
     transform-origin:
         right center;
 
+    opacity:
+        .6;
+
 }
 
 
-/* =========================================================
-   RIGHT
-========================================================= */
-
-.panel.right {
+.fold-right {
 
     right:
         0;
@@ -691,7 +617,7 @@ body {
         0;
 
     width:
-        25%;
+        50%;
 
     height:
         100%;
@@ -702,14 +628,13 @@ body {
     transform-origin:
         left center;
 
+    opacity:
+        .6;
+
 }
 
 
-/* =========================================================
-   TOP
-========================================================= */
-
-.panel.top {
+.fold-top {
 
     left:
         25%;
@@ -724,19 +649,45 @@ body {
         50%;
 
     z-index:
-        7;
-
-    opacity:
-        0;
+        4;
 
     transform-origin:
         center bottom;
+
+    opacity:
+        .55;
+
+}
+
+
+.fold-bottom {
+
+    left:
+        25%;
+
+    bottom:
+        0;
+
+    width:
+        50%;
+
+    height:
+        50%;
+
+    z-index:
+        4;
+
+    transform-origin:
+        center top;
+
+    opacity:
+        .55;
 
 }
 
 
 /* =========================================================
-   CORNERS
+   PAPER CORNERS
 ========================================================= */
 
 .corner {
@@ -745,14 +696,17 @@ body {
         absolute;
 
     width:
-        46px;
+        48px;
 
     height:
-        46px;
+        48px;
 
     border:
         1px solid
-        rgba(70,55,34,.16);
+        rgba(71,56,37,.16);
+
+    z-index:
+        5;
 
 }
 
@@ -760,10 +714,10 @@ body {
 .corner.tl {
 
     top:
-        20px;
+        22px;
 
     left:
-        20px;
+        22px;
 
     border-right:
         0;
@@ -777,10 +731,10 @@ body {
 .corner.tr {
 
     top:
-        20px;
+        22px;
 
     right:
-        20px;
+        22px;
 
     border-left:
         0;
@@ -794,10 +748,10 @@ body {
 .corner.bl {
 
     bottom:
-        20px;
+        22px;
 
     left:
-        20px;
+        22px;
 
     border-right:
         0;
@@ -811,10 +765,10 @@ body {
 .corner.br {
 
     bottom:
-        20px;
+        22px;
 
     right:
-        20px;
+        22px;
 
     border-left:
         0;
@@ -826,7 +780,41 @@ body {
 
 
 /* =========================================================
-   LETTER CONTENT
+   PAPER CREASES
+========================================================= */
+
+.paper-lines {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    pointer-events:
+        none;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent 49.8%,
+            rgba(86,66,40,.09) 50%,
+            transparent 50.2%
+        ),
+
+        linear-gradient(
+            0deg,
+            transparent 49.8%,
+            rgba(86,66,40,.09) 50%,
+            transparent 50.2%
+        );
+
+}
+
+
+/* =========================================================
+   LETTER
 ========================================================= */
 
 .letter-content {
@@ -841,7 +829,7 @@ body {
         10;
 
     padding:
-        46px 54px;
+        55px 70px;
 
     display:
         flex;
@@ -852,16 +840,19 @@ body {
     justify-content:
         space-between;
 
+    transition:
+        opacity .7s ease;
+
     pointer-events:
         none;
-
-    transition:
-        opacity .4s ease;
 
 }
 
 
 .letter-label {
+
+    color:
+        #817565;
 
     font-size:
         9px;
@@ -869,25 +860,22 @@ body {
     font-weight:
         700;
 
-    text-transform:
-        uppercase;
-
     letter-spacing:
         .24em;
 
-    color:
-        #817565;
+    text-transform:
+        uppercase;
 
 }
 
 
 .letter-title {
 
+    max-width:
+        70%;
+
     margin-top:
         20px;
-
-    max-width:
-        80%;
 
     font-family:
         Georgia,
@@ -895,7 +883,7 @@ body {
         serif;
 
     font-size:
-        clamp(30px,4vw,50px);
+        clamp(32px,4vw,52px);
 
     font-weight:
         400;
@@ -909,13 +897,10 @@ body {
 .message-preview {
 
     max-width:
-        70%;
+        68%;
 
     margin-top:
-        24px;
-
-    color:
-        #50483c;
+        25px;
 
     font-family:
         Georgia,
@@ -923,10 +908,13 @@ body {
         serif;
 
     font-size:
-        clamp(15px,1.8vw,20px);
+        clamp(15px,1.6vw,20px);
 
     line-height:
         1.65;
+
+    color:
+        #50483c;
 
     white-space:
         pre-wrap;
@@ -951,24 +939,517 @@ body {
     align-self:
         flex-end;
 
-    color:
-        #50483d;
-
     font-family:
         "Brush Script MT",
         cursive;
 
+    color:
+        #50483d;
+
     font-size:
-        26px;
+        28px;
+
+}
+
+
+/* =========================================================
+   =========================================================
+   CRANE
+   =========================================================
+========================================================= */
+
+.crane {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    width:
+        440px;
+
+    height:
+        360px;
+
+    transform:
+        translate(-50%,-45%)
+        scale(.15)
+        rotateX(70deg);
+
+    transform-style:
+        preserve-3d;
+
+    z-index:
+        30;
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity .7s ease,
+        transform 1.25s var(--ease);
+
+}
+
+
+/* =========================================================
+   GENERIC CRANE PART
+========================================================= */
+
+.crane-part {
+
+    position:
+        absolute;
+
+    transform-style:
+        preserve-3d;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f9f1db,
+            var(--crane)
+        );
+
+    border:
+        1px solid
+        rgba(91,73,42,.2);
+
+    box-shadow:
+        inset 0 0 20px
+        rgba(90,72,39,.05),
+
+        0 8px 20px
+        rgba(51,41,25,.08);
+
+    transition:
+        transform 1.2s var(--ease),
+        clip-path 1.2s var(--ease);
+
+}
+
+
+/* =========================================================
+   LEFT WING
+========================================================= */
+
+.crane-wing-left {
+
+    left:
+        6px;
+
+    top:
+        78px;
+
+    width:
+        215px;
+
+    height:
+        170px;
+
+    clip-path:
+        polygon(
+            100% 50%,
+            78% 22%,
+            20% 0,
+            0 5%,
+            34% 55%,
+            2% 100%,
+            78% 76%
+        );
+
+    transform:
+        rotateZ(-5deg)
+        rotateX(10deg)
+        translateZ(0);
+
+}
+
+
+/* =========================================================
+   RIGHT WING
+========================================================= */
+
+.crane-wing-right {
+
+    right:
+        6px;
+
+    top:
+        78px;
+
+    width:
+        215px;
+
+    height:
+        170px;
+
+    clip-path:
+        polygon(
+            0 50%,
+            22% 22%,
+            80% 0,
+            100% 5%,
+            66% 55%,
+            98% 100%,
+            22% 76%
+        );
+
+    transform:
+        rotateZ(5deg)
+        rotateX(10deg);
+
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+.crane-body {
+
+    left:
+        158px;
+
+    top:
+        120px;
+
+    width:
+        124px;
+
+    height:
+        115px;
+
+    clip-path:
+        polygon(
+            50% 0,
+            100% 42%,
+            78% 100%,
+            22% 100%,
+            0 42%
+        );
+
+    background:
+        linear-gradient(
+            150deg,
+            #fff8e7,
+            #e0d0ad
+        );
+
+    transform:
+        translateZ(35px);
+
+}
+
+
+/* =========================================================
+   CHEST
+========================================================= */
+
+.crane-chest {
+
+    left:
+        196px;
+
+    top:
+        184px;
+
+    width:
+        48px;
+
+    height:
+        76px;
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            74% 100%,
+            26% 100%
+        );
+
+    transform:
+        translateZ(48px)
+        rotateZ(180deg);
+
+    background:
+        #e4d3ad;
+
+}
+
+
+/* =========================================================
+   NECK
+========================================================= */
+
+.crane-neck {
+
+    left:
+        246px;
+
+    top:
+        78px;
+
+    width:
+        48px;
+
+    height:
+        115px;
+
+    clip-path:
+        polygon(
+            45% 100%,
+            10% 74%,
+            0 12%,
+            46% 0,
+            100% 16%,
+            72% 76%
+        );
+
+    background:
+        linear-gradient(
+            130deg,
+            #fff9e9,
+            #d9c69d
+        );
+
+    transform-origin:
+        bottom center;
+
+    transform:
+        rotateZ(-10deg)
+        rotateY(-5deg)
+        translateZ(62px);
+
+}
+
+
+/* =========================================================
+   HEAD
+========================================================= */
+
+.crane-head {
+
+    left:
+        268px;
+
+    top:
+        52px;
+
+    width:
+        76px;
+
+    height:
+        64px;
+
+    clip-path:
+        polygon(
+            0 20%,
+            65% 0,
+            100% 50%,
+            65% 100%,
+            0 80%,
+            25% 50%
+        );
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff8e8,
+            #d8c39a
+        );
+
+    transform:
+        rotateZ(-8deg)
+        translateZ(75px);
+
+}
+
+
+/* =========================================================
+   BEAK
+========================================================= */
+
+.beak {
+
+    position:
+        absolute;
+
+    right:
+        -32px;
+
+    top:
+        23px;
+
+    width:
+        42px;
+
+    height:
+        18px;
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 50%,
+            0 100%
+        );
+
+    background:
+        #c8a875;
+
+    transform:
+        rotateZ(-2deg);
+
+}
+
+
+/* =========================================================
+   TAIL
+========================================================= */
+
+.crane-tail {
+
+    left:
+        126px;
+
+    top:
+        145px;
+
+    width:
+        110px;
+
+    height:
+        145px;
+
+    clip-path:
+        polygon(
+            85% 0,
+            100% 100%,
+            50% 75%,
+            0 100%,
+            18% 0
+        );
+
+    background:
+        linear-gradient(
+            140deg,
+            #f7edd6,
+            #d1bd95
+        );
+
+    transform:
+        rotateZ(-10deg)
+        rotateX(10deg)
+        translateZ(22px);
+
+}
+
+
+/* =========================================================
+   WING FEATHERS
+========================================================= */
+
+.wing-feather {
+
+    position:
+        absolute;
+
+    width:
+        100%;
+
+    height:
+        45px;
+
+    border-bottom:
+        1px solid
+        rgba(75,57,32,.15);
+
+    opacity:
+        .8;
+
+}
+
+
+.crane-wing-left .feather-1 {
+
+    bottom:
+        90px;
+
+    transform:
+        rotateZ(-8deg);
+
+}
+
+
+.crane-wing-left .feather-2 {
+
+    bottom:
+        55px;
+
+    transform:
+        rotateZ(-3deg);
+
+}
+
+
+.crane-wing-left .feather-3 {
+
+    bottom:
+        20px;
+
+    transform:
+        rotateZ(4deg);
+
+}
+
+
+.crane-wing-right .feather-1 {
+
+    bottom:
+        90px;
+
+    transform:
+        rotateZ(8deg);
+
+}
+
+
+.crane-wing-right .feather-2 {
+
+    bottom:
+        55px;
+
+    transform:
+        rotateZ(3deg);
+
+}
+
+
+.crane-wing-right .feather-3 {
+
+    bottom:
+        20px;
+
+    transform:
+        rotateZ(-4deg);
 
 }
 
 
 /* =========================================================
    FOLD 1
+   SIDE FOLDS
 ========================================================= */
 
-.paper.fold-1 .panel.left {
+.paper.fold-1
+.fold-left {
 
     transform:
         rotateY(-175deg);
@@ -976,7 +1457,8 @@ body {
 }
 
 
-.paper.fold-1 .panel.right {
+.paper.fold-1
+.fold-right {
 
     transform:
         rotateY(175deg);
@@ -986,105 +1468,98 @@ body {
 
 /* =========================================================
    FOLD 2
+   DIAMOND
 ========================================================= */
 
-.paper.fold-2 .panel.left {
+.paper.fold-2
+.sheet-main {
 
     transform:
-        rotateY(-180deg);
+        rotateX(32deg);
 
 }
 
 
-.paper.fold-2 .panel.right {
+.paper.fold-2
+.fold-top {
 
     transform:
-        rotateY(180deg);
-
-}
-
-
-.paper.fold-2 .panel.center {
-
-    transform:
-        rotateX(78deg)
-        translateY(-20px);
-
-}
-
-
-.paper.fold-2 .panel.top {
+        rotateX(-155deg);
 
     opacity:
         1;
 
+}
+
+
+.paper.fold-2
+.fold-bottom {
+
     transform:
-        rotateX(-165deg);
+        rotateX(155deg);
+
+    opacity:
+        1;
 
 }
 
 
 /* =========================================================
    FOLD 3
+   NARROW BODY
 ========================================================= */
 
 .paper.fold-3 {
 
     width:
-        250px;
+        500px;
 
-    aspect-ratio:
-        1 / 1;
+    height:
+        500px;
 
 }
 
 
-.paper.fold-3 .panel.left {
+.paper.fold-3
+.sheet-main {
+
+    clip-path:
+        polygon(
+            50% 0,
+            100% 50%,
+            50% 100%,
+            0 50%
+        );
+
+    transform:
+        rotateZ(45deg)
+        scale(.65);
+
+}
+
+
+.paper.fold-3
+.fold-left {
 
     transform:
         rotateY(-180deg)
-        translateX(20px);
+        translateX(25px);
 
 }
 
 
-.paper.fold-3 .panel.right {
+.paper.fold-3
+.fold-right {
 
     transform:
         rotateY(180deg)
-        translateX(-20px);
+        translateX(-25px);
 
 }
 
 
-.paper.fold-3 .panel.center {
-
-    transform:
-        rotateX(87deg)
-        translateY(-125px)
-        scale(.84);
-
-}
-
-
-.paper.fold-3 .panel.top {
-
-    opacity:
-        1;
-
-    transform:
-        rotateX(-178deg)
-        translateY(5px)
-        scale(.88);
-
-    box-shadow:
-        0 20px 50px
-        rgba(30,24,17,.22);
-
-}
-
-
-.paper.fold-3 .letter-content {
+.paper.fold-3
+.letter-content {
 
     opacity:
         0;
@@ -1093,143 +1568,190 @@ body {
 
 
 /* =========================================================
-   FINAL MARK
+   FOLD 4
+   RAISE WINGS
 ========================================================= */
 
-.final-mark {
-
-    position:
-        absolute;
-
-    left:
-        50%;
-
-    top:
-        50%;
-
-    width:
-        100px;
-
-    height:
-        100px;
-
-    z-index:
-        40;
+.paper.fold-4
+.crane {
 
     opacity:
-        0;
+        .8;
 
     transform:
-        translate(-50%,-50%)
-        scale(0);
-
-    transition:
-        transform .9s cubic-bezier(.18,.89,.32,1.28),
-        opacity .6s ease;
+        translate(-50%,-45%)
+        scale(.55)
+        rotateX(15deg);
 
 }
 
 
-.paper.fold-3 .final-mark {
+.paper.fold-4
+.fold-top {
+
+    transform:
+        rotateX(-170deg)
+        translateY(-35px);
+
+}
+
+
+.paper.fold-4
+.fold-bottom {
+
+    transform:
+        rotateX(170deg)
+        translateY(35px);
+
+}
+
+
+/* =========================================================
+   FOLD 5
+   OPEN WINGS
+========================================================= */
+
+.paper.fold-5
+.crane {
 
     opacity:
         1;
 
     transform:
-        translate(-50%,-50%)
-        scale(1);
+        translate(-50%,-45%)
+        scale(.88)
+        rotateX(5deg);
 
 }
 
 
-.final-mark::before {
-
-    content:
-        "";
-
-    position:
-        absolute;
-
-    inset:
-        0;
-
-    background:
-        linear-gradient(
-            135deg,
-            transparent 49%,
-            rgba(91,72,43,.18) 50%,
-            transparent 51%
-        ),
-        linear-gradient(
-            45deg,
-            transparent 49%,
-            rgba(91,72,43,.18) 50%,
-            transparent 51%
-        );
-
-    border:
-        1px solid
-        rgba(72,56,35,.2);
+.paper.fold-5
+.crane-wing-left {
 
     transform:
-        rotate(45deg);
+        rotateZ(-13deg)
+        rotateX(-18deg)
+        translateY(-15px)
+        translateZ(20px);
 
 }
 
 
-.final-mark span {
+.paper.fold-5
+.crane-wing-right {
 
-    position:
-        absolute;
+    transform:
+        rotateZ(13deg)
+        rotateX(-18deg)
+        translateY(-15px)
+        translateZ(20px);
+
+}
+
+
+/* =========================================================
+   FOLD 6
+   FINISHED CRANE
+========================================================= */
+
+.paper.fold-6 {
 
     width:
-        40px;
+        520px;
 
     height:
-        40px;
-
-    left:
-        30px;
-
-    top:
-        30px;
-
-    border:
-        1px solid
-        rgba(72,56,35,.5);
-
-    transform:
-        rotate(45deg);
+        450px;
 
 }
 
 
-.final-mark b {
+.paper.fold-6
+.sheet {
 
-    position:
-        absolute;
+    opacity:
+        0;
 
-    left:
-        50%;
+    pointer-events:
+        none;
 
-    top:
-        50%;
+}
+
+
+.paper.fold-6
+.letter-content {
+
+    opacity:
+        0;
+
+}
+
+
+.paper.fold-6
+.crane {
+
+    opacity:
+        1;
 
     transform:
-        translate(-50%,-50%);
+        translate(-50%,-48%)
+        scale(1)
+        rotateX(0);
 
-    font-family:
-        Georgia,
-        serif;
+}
 
-    font-size:
-        17px;
 
-    font-weight:
-        400;
+/* =========================================================
+   FINAL CRANE SHAPE
+========================================================= */
 
-    color:
-        #4b3f30;
+.paper.fold-6
+.crane-wing-left {
+
+    transform:
+        rotateZ(-10deg)
+        rotateX(-22deg)
+        translateZ(25px);
+
+}
+
+
+.paper.fold-6
+.crane-wing-right {
+
+    transform:
+        rotateZ(10deg)
+        rotateX(-22deg)
+        translateZ(25px);
+
+}
+
+
+.paper.fold-6
+.crane-neck {
+
+    transform:
+        rotateZ(-13deg)
+        translateZ(65px);
+
+}
+
+
+.paper.fold-6
+.crane-head {
+
+    transform:
+        rotateZ(-12deg)
+        translateZ(80px);
+
+}
+
+
+.paper.fold-6
+.crane-tail {
+
+    transform:
+        rotateZ(-13deg)
+        translateZ(25px);
 
 }
 
@@ -1256,10 +1778,10 @@ body {
         flex;
 
     gap:
-        8px;
+        7px;
 
     z-index:
-        30;
+        50;
 
 }
 
@@ -1267,17 +1789,16 @@ body {
 .progress-dot {
 
     width:
-        34px;
+        27px;
 
     height:
         2px;
 
     background:
-        rgba(48,40,29,.18);
+        rgba(50,42,31,.18);
 
     transition:
-        background .3s ease,
-        width .3s ease;
+        .3s ease;
 
 }
 
@@ -1285,7 +1806,7 @@ body {
 .progress-dot.active {
 
     width:
-        42px;
+        36px;
 
     background:
         #3d352b;
@@ -1302,11 +1823,11 @@ body {
     position:
         absolute;
 
-    bottom:
-        30px;
-
     left:
         50%;
+
+    bottom:
+        27px;
 
     transform:
         translateX(-50%);
@@ -1335,6 +1856,9 @@ body {
     letter-spacing:
         .15em;
 
+    text-align:
+        center;
+
 }
 
 
@@ -1347,7 +1871,7 @@ body {
 
 
 /* =========================================================
-   WRITE OVERLAY
+   WRITING MODAL
 ========================================================= */
 
 .write-overlay {
@@ -1364,17 +1888,17 @@ body {
     display:
         flex;
 
-    align-items:
+    justify-content:
         center;
 
-    justify-content:
+    align-items:
         center;
 
     padding:
         25px;
 
     background:
-        rgba(239,235,226,.74);
+        rgba(239,235,226,.76);
 
     backdrop-filter:
         blur(16px);
@@ -1402,20 +1926,16 @@ body {
 }
 
 
-/* =========================================================
-   WRITE CARD
-========================================================= */
-
 .write-card {
 
     width:
         min(720px,100%);
 
-    position:
-        relative;
-
     padding:
         40px;
+
+    position:
+        relative;
 
     background:
         linear-gradient(
@@ -1454,12 +1974,8 @@ body {
 
 .write-card h2 {
 
-    margin-bottom:
-        8px;
-
     font-family:
         Georgia,
-        "Times New Roman",
         serif;
 
     font-size:
@@ -1468,20 +1984,22 @@ body {
     font-weight:
         400;
 
+    margin-bottom:
+        8px;
+
 }
 
 
 .write-card p {
 
     margin-bottom:
-        28px;
+        25px;
 
     color:
         var(--muted);
 
     font-family:
         Georgia,
-        "Times New Roman",
         serif;
 
     line-height:
@@ -1519,11 +2037,11 @@ body {
     font-weight:
         700;
 
-    text-transform:
-        uppercase;
-
     letter-spacing:
         .18em;
+
+    text-transform:
+        uppercase;
 
 }
 
@@ -1552,15 +2070,10 @@ body {
 
     font-family:
         Georgia,
-        "Times New Roman",
         serif;
 
     font-size:
         16px;
-
-    transition:
-        border .2s ease,
-        box-shadow .2s ease;
 
 }
 
@@ -1592,10 +2105,6 @@ body {
 }
 
 
-/* =========================================================
-   WRITE FOOTER
-========================================================= */
-
 .write-footer {
 
     margin-top:
@@ -1610,9 +2119,6 @@ body {
     justify-content:
         space-between;
 
-    gap:
-        15px;
-
 }
 
 
@@ -1626,10 +2132,6 @@ body {
 
 }
 
-
-/* =========================================================
-   CLOSE BUTTON
-========================================================= */
 
 .close-write {
 
@@ -1684,6 +2186,9 @@ body {
     z-index:
         1000;
 
+    transform:
+        translate(-50%,20px);
+
     padding:
         12px 18px;
 
@@ -1694,7 +2199,7 @@ body {
         #28241f;
 
     color:
-        #ffffff;
+        white;
 
     font-size:
         12px;
@@ -1705,12 +2210,8 @@ body {
     pointer-events:
         none;
 
-    transform:
-        translate(-50%,20px);
-
     transition:
-        opacity .3s ease,
-        transform .3s ease;
+        .3s ease;
 
 }
 
@@ -1744,11 +2245,8 @@ body {
     bottom:
         0;
 
-    z-index:
-        50;
-
     height:
-        55px;
+        50px;
 
     padding:
         0 28px;
@@ -1766,7 +2264,7 @@ body {
         #81796d;
 
     font-size:
-        10px;
+        9px;
 
     text-transform:
         uppercase;
@@ -1774,11 +2272,14 @@ body {
     letter-spacing:
         .15em;
 
+    z-index:
+        50;
+
 }
 
 
 /* =========================================================
-   TABLET / MOBILE
+   MOBILE
 ========================================================= */
 
 @media (max-width: 700px) {
@@ -1803,7 +2304,7 @@ body {
 
 
     .top-actions
-    .btn.secondary {
+    .secondary {
 
         display:
             none;
@@ -1811,18 +2312,10 @@ body {
     }
 
 
-    .hero {
-
-        padding-top:
-            20px;
-
-    }
-
-
     .hero h1 {
 
         font-size:
-            48px;
+            46px;
 
     }
 
@@ -1830,7 +2323,7 @@ body {
     .hero p {
 
         max-width:
-            330px;
+            340px;
 
         font-size:
             14px;
@@ -1844,7 +2337,7 @@ body {
             650px;
 
         padding:
-            30px 10px 90px;
+            25px 10px 90px;
 
     }
 
@@ -1852,13 +2345,10 @@ body {
     .scene {
 
         width:
-            95vw;
+            96vw;
 
         height:
-            110vw;
-
-        max-height:
-            none;
+            560px;
 
     }
 
@@ -1868,13 +2358,20 @@ body {
         width:
             92vw;
 
+        height:
+            60vw;
+
     }
 
 
-    .paper.fold-3 {
+    .paper.fold-3,
+    .paper.fold-6 {
 
         width:
-            210px;
+            450px;
+
+        max-width:
+            96vw;
 
     }
 
@@ -1898,10 +2395,37 @@ body {
     .message-preview {
 
         max-width:
-            85%;
+            83%;
 
         font-size:
             14px;
+
+    }
+
+
+    .crane {
+
+        width:
+            350px;
+
+        height:
+            300px;
+
+        transform:
+            translate(-50%,-45%)
+            scale(.15)
+            rotateX(70deg);
+
+    }
+
+
+    .paper.fold-6
+    .crane {
+
+        transform:
+            translate(-50%,-45%)
+            scale(.78)
+            rotateX(0);
 
     }
 
@@ -1914,14 +2438,6 @@ body {
     }
 
 
-    .write-card h2 {
-
-        font-size:
-            31px;
-
-    }
-
-
     .write-footer {
 
         flex-direction:
@@ -1929,6 +2445,9 @@ body {
 
         align-items:
             stretch;
+
+        gap:
+            12px;
 
     }
 
@@ -1941,24 +2460,16 @@ body {
     }
 
 
-    .instruction {
-
-        bottom:
-            75px;
-
-    }
-
-
     .footer {
 
         height:
-            44px;
+            42px;
 
         padding:
-            0 15px;
+            0 14px;
 
         font-size:
-            8px;
+            7px;
 
     }
 
@@ -1966,7 +2477,7 @@ body {
 
 
 /* =========================================================
-   SMALL PHONES
+   SMALL PHONE
 ========================================================= */
 
 @media (max-width: 430px) {
@@ -1974,7 +2485,7 @@ body {
     .hero h1 {
 
         font-size:
-            40px;
+            39px;
 
     }
 
@@ -1987,10 +2498,18 @@ body {
     }
 
 
+    .paper {
+
+        width:
+            94vw;
+
+    }
+
+
     .letter-content {
 
         padding:
-            24px;
+            22px;
 
     }
 
@@ -1998,73 +2517,36 @@ body {
     .letter-title {
 
         font-size:
-            23px;
+            22px;
 
     }
 
 
     .message-preview {
 
-        margin-top:
-            16px;
-
         font-size:
-            13px;
+            12px;
 
     }
 
 
-    .signature {
+    .crane {
 
-        font-size:
-            21px;
-
-    }
-
-
-    .corner {
-
-        width:
-            32px;
-
-        height:
-            32px;
+        transform:
+            translate(-50%,-45%)
+            scale(.11)
+            rotateX(70deg);
 
     }
 
 
-    .corner.tl,
-    .corner.tr {
+    .paper.fold-6
+    .crane {
 
-        top:
-            14px;
-
-    }
-
-
-    .corner.bl,
-    .corner.br {
-
-        bottom:
-            14px;
-
-    }
-
-
-    .corner.tl,
-    .corner.bl {
-
-        left:
-            14px;
-
-    }
-
-
-    .corner.tr,
-    .corner.br {
-
-        right:
-            14px;
+        transform:
+            translate(-50%,-45%)
+            scale(.58)
+            rotateX(0);
 
     }
 
@@ -2074,15 +2556,6 @@ body {
 /* =========================================================
    ACCESSIBILITY
 ========================================================= */
-
-button,
-input,
-textarea {
-
-    font: inherit;
-
-}
-
 
 button:focus-visible,
 input:focus-visible,
@@ -2117,9 +2590,6 @@ textarea:focus-visible,
         transition-duration:
             .01ms !important;
 
-        scroll-behavior:
-            auto !important;
-
     }
 
 }
@@ -2130,14 +2600,6 @@ textarea:focus-visible,
 ========================================================= */
 
 @media print {
-
-    body {
-
-        background:
-            #ffffff;
-
-    }
-
 
     .topbar,
     .hero,
@@ -2159,23 +2621,6 @@ textarea:focus-visible,
         min-height:
             auto;
 
-        padding:
-            0;
-
-    }
-
-
-    .scene {
-
-        width:
-            100%;
-
-        height:
-            auto;
-
-        max-height:
-            none;
-
     }
 
 
@@ -2190,13 +2635,10 @@ textarea:focus-visible,
     }
 
 
-    .panel {
+    .crane {
 
-        transform:
-            none !important;
-
-        opacity:
-            1 !important;
+        display:
+            none;
 
     }
 
@@ -2205,14 +2647,6 @@ textarea:focus-visible,
 
         opacity:
             1 !important;
-
-    }
-
-
-    .final-mark {
-
-        display:
-            none !important;
 
     }
 

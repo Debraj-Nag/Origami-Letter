@@ -1,0 +1,2219 @@
+/* =========================================================
+   DIGITAL ORIGAMI LETTER
+   style.css
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+
+    --paper:
+        #f7f0dc;
+
+    --paper-light:
+        #fffaf0;
+
+    --paper-dark:
+        #dfd1b1;
+
+    --ink:
+        #29251f;
+
+    --muted:
+        #766f63;
+
+    --accent:
+        #6c5a45;
+
+    --border:
+        rgba(60, 48, 33, 0.15);
+
+    --shadow:
+        rgba(40, 31, 19, 0.20);
+
+    --ease:
+        cubic-bezier(.2, .78, .2, 1);
+
+}
+
+
+/* =========================================================
+   HTML / BODY
+========================================================= */
+
+html,
+body {
+
+    width: 100%;
+    min-height: 100%;
+
+}
+
+
+body {
+
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color:
+        var(--ink);
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            #ffffff 0%,
+            #f8f5ee 35%,
+            #e9e4d9 100%
+        );
+
+    overflow-x: hidden;
+
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+
+    min-height: 100vh;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    position:
+        relative;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.topbar {
+
+    width: 100%;
+    height: 76px;
+
+    padding:
+        0 32px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    position:
+        relative;
+
+    z-index:
+        100;
+
+}
+
+
+.brand {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .18em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.brand-mark {
+
+    width:
+        30px;
+
+    height:
+        30px;
+
+    position:
+        relative;
+
+    transform:
+        rotate(45deg);
+
+}
+
+
+.brand-mark::before,
+.brand-mark::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        5px;
+
+    border:
+        1px solid #453c30;
+
+}
+
+
+.brand-mark::after {
+
+    transform:
+        rotate(45deg);
+
+}
+
+
+.top-actions {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn {
+
+    min-height:
+        42px;
+
+    padding:
+        0 18px;
+
+    border:
+        1px solid rgba(40,35,29,.18);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(255,255,255,.55);
+
+    color:
+        var(--ink);
+
+    cursor:
+        pointer;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .08em;
+
+    text-transform:
+        uppercase;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+.btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(255,255,255,.9);
+
+    box-shadow:
+        0 10px 30px
+        rgba(40,35,29,.08);
+
+}
+
+
+.btn.primary {
+
+    background:
+        #2d2923;
+
+    color:
+        #ffffff;
+
+    border-color:
+        #2d2923;
+
+}
+
+
+.btn.primary:hover {
+
+    background:
+        #16130f;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    text-align:
+        center;
+
+    padding:
+        18px 20px 0;
+
+}
+
+
+.eyebrow {
+
+    margin-bottom:
+        13px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .28em;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.hero h1 {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(42px, 6vw, 72px);
+
+    line-height:
+        .95;
+
+    font-weight:
+        400;
+
+    letter-spacing:
+        -.05em;
+
+}
+
+
+.hero p {
+
+    max-width:
+        620px;
+
+    margin:
+        18px auto 0;
+
+    color:
+        #736c61;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        16px;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* =========================================================
+   WORKSPACE
+========================================================= */
+
+.workspace {
+
+    flex:
+        1;
+
+    min-height:
+        650px;
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        45px 20px 80px;
+
+}
+
+
+/* =========================================================
+   PAPER SHADOW
+========================================================= */
+
+.paper-shadow {
+
+    position:
+        absolute;
+
+    width:
+        min(75vw,760px);
+
+    height:
+        min(30vw,300px);
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(54,44,30,.14);
+
+    filter:
+        blur(40px);
+
+    transform:
+        translateY(145px)
+        scale(.85);
+
+    transition:
+        transform 1.1s var(--ease),
+        opacity 1.1s ease;
+
+}
+
+
+/* =========================================================
+   3D SCENE
+========================================================= */
+
+.scene {
+
+    width:
+        min(88vw,820px);
+
+    height:
+        min(62vw,540px);
+
+    max-height:
+        540px;
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    perspective:
+        1800px;
+
+    outline:
+        none;
+
+}
+
+
+/* =========================================================
+   PAPER
+========================================================= */
+
+.paper {
+
+    position:
+        relative;
+
+    width:
+        min(82vw,720px);
+
+    aspect-ratio:
+        1.45 / 1;
+
+    transform-style:
+        preserve-3d;
+
+    transform-origin:
+        center center;
+
+    transition:
+        width 1s ease,
+        transform 1.15s var(--ease);
+
+}
+
+
+/* =========================================================
+   PANEL
+========================================================= */
+
+.panel {
+
+    position:
+        absolute;
+
+    overflow:
+        hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--paper-light),
+            var(--paper)
+        );
+
+    border:
+        1px solid rgba(88,71,47,.18);
+
+    box-shadow:
+        0 18px 50px
+        rgba(48,40,28,.12),
+
+        inset 0 0 30px
+        rgba(100,80,45,.04);
+
+    backface-visibility:
+        hidden;
+
+    transform-style:
+        preserve-3d;
+
+    transition:
+        transform 1.15s var(--ease),
+        opacity 1s ease;
+
+}
+
+
+/* =========================================================
+   PAPER TEXTURE
+========================================================= */
+
+.panel::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    pointer-events:
+        none;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(100,82,54,.025) 0px,
+            rgba(100,82,54,.025) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+
+}
+
+
+/* =========================================================
+   INNER BORDER
+========================================================= */
+
+.panel::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        5%;
+
+    top:
+        5%;
+
+    width:
+        90%;
+
+    height:
+        90%;
+
+    border:
+        1px solid
+        rgba(78,63,42,.12);
+
+    pointer-events:
+        none;
+
+}
+
+
+/* =========================================================
+   CENTER
+========================================================= */
+
+.panel.center {
+
+    left:
+        25%;
+
+    top:
+        0;
+
+    width:
+        50%;
+
+    height:
+        100%;
+
+    z-index:
+        4;
+
+    transform-origin:
+        center bottom;
+
+}
+
+
+/* =========================================================
+   LEFT
+========================================================= */
+
+.panel.left {
+
+    left:
+        0;
+
+    top:
+        0;
+
+    width:
+        25%;
+
+    height:
+        100%;
+
+    z-index:
+        3;
+
+    transform-origin:
+        right center;
+
+}
+
+
+/* =========================================================
+   RIGHT
+========================================================= */
+
+.panel.right {
+
+    right:
+        0;
+
+    top:
+        0;
+
+    width:
+        25%;
+
+    height:
+        100%;
+
+    z-index:
+        3;
+
+    transform-origin:
+        left center;
+
+}
+
+
+/* =========================================================
+   TOP
+========================================================= */
+
+.panel.top {
+
+    left:
+        25%;
+
+    top:
+        0;
+
+    width:
+        50%;
+
+    height:
+        50%;
+
+    z-index:
+        7;
+
+    opacity:
+        0;
+
+    transform-origin:
+        center bottom;
+
+}
+
+
+/* =========================================================
+   CORNERS
+========================================================= */
+
+.corner {
+
+    position:
+        absolute;
+
+    width:
+        46px;
+
+    height:
+        46px;
+
+    border:
+        1px solid
+        rgba(70,55,34,.16);
+
+}
+
+
+.corner.tl {
+
+    top:
+        20px;
+
+    left:
+        20px;
+
+    border-right:
+        0;
+
+    border-bottom:
+        0;
+
+}
+
+
+.corner.tr {
+
+    top:
+        20px;
+
+    right:
+        20px;
+
+    border-left:
+        0;
+
+    border-bottom:
+        0;
+
+}
+
+
+.corner.bl {
+
+    bottom:
+        20px;
+
+    left:
+        20px;
+
+    border-right:
+        0;
+
+    border-top:
+        0;
+
+}
+
+
+.corner.br {
+
+    bottom:
+        20px;
+
+    right:
+        20px;
+
+    border-left:
+        0;
+
+    border-top:
+        0;
+
+}
+
+
+/* =========================================================
+   LETTER CONTENT
+========================================================= */
+
+.letter-content {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    z-index:
+        10;
+
+    padding:
+        46px 54px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        space-between;
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity .4s ease;
+
+}
+
+
+.letter-label {
+
+    font-size:
+        9px;
+
+    font-weight:
+        700;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        .24em;
+
+    color:
+        #817565;
+
+}
+
+
+.letter-title {
+
+    margin-top:
+        20px;
+
+    max-width:
+        80%;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(30px,4vw,50px);
+
+    font-weight:
+        400;
+
+    line-height:
+        1;
+
+}
+
+
+.message-preview {
+
+    max-width:
+        70%;
+
+    margin-top:
+        24px;
+
+    color:
+        #50483c;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(15px,1.8vw,20px);
+
+    line-height:
+        1.65;
+
+    white-space:
+        pre-wrap;
+
+    display:
+        -webkit-box;
+
+    -webkit-box-orient:
+        vertical;
+
+    -webkit-line-clamp:
+        5;
+
+    overflow:
+        hidden;
+
+}
+
+
+.signature {
+
+    align-self:
+        flex-end;
+
+    color:
+        #50483d;
+
+    font-family:
+        "Brush Script MT",
+        cursive;
+
+    font-size:
+        26px;
+
+}
+
+
+/* =========================================================
+   FOLD 1
+========================================================= */
+
+.paper.fold-1 .panel.left {
+
+    transform:
+        rotateY(-175deg);
+
+}
+
+
+.paper.fold-1 .panel.right {
+
+    transform:
+        rotateY(175deg);
+
+}
+
+
+/* =========================================================
+   FOLD 2
+========================================================= */
+
+.paper.fold-2 .panel.left {
+
+    transform:
+        rotateY(-180deg);
+
+}
+
+
+.paper.fold-2 .panel.right {
+
+    transform:
+        rotateY(180deg);
+
+}
+
+
+.paper.fold-2 .panel.center {
+
+    transform:
+        rotateX(78deg)
+        translateY(-20px);
+
+}
+
+
+.paper.fold-2 .panel.top {
+
+    opacity:
+        1;
+
+    transform:
+        rotateX(-165deg);
+
+}
+
+
+/* =========================================================
+   FOLD 3
+========================================================= */
+
+.paper.fold-3 {
+
+    width:
+        250px;
+
+    aspect-ratio:
+        1 / 1;
+
+}
+
+
+.paper.fold-3 .panel.left {
+
+    transform:
+        rotateY(-180deg)
+        translateX(20px);
+
+}
+
+
+.paper.fold-3 .panel.right {
+
+    transform:
+        rotateY(180deg)
+        translateX(-20px);
+
+}
+
+
+.paper.fold-3 .panel.center {
+
+    transform:
+        rotateX(87deg)
+        translateY(-125px)
+        scale(.84);
+
+}
+
+
+.paper.fold-3 .panel.top {
+
+    opacity:
+        1;
+
+    transform:
+        rotateX(-178deg)
+        translateY(5px)
+        scale(.88);
+
+    box-shadow:
+        0 20px 50px
+        rgba(30,24,17,.22);
+
+}
+
+
+.paper.fold-3 .letter-content {
+
+    opacity:
+        0;
+
+}
+
+
+/* =========================================================
+   FINAL MARK
+========================================================= */
+
+.final-mark {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    width:
+        100px;
+
+    height:
+        100px;
+
+    z-index:
+        40;
+
+    opacity:
+        0;
+
+    transform:
+        translate(-50%,-50%)
+        scale(0);
+
+    transition:
+        transform .9s cubic-bezier(.18,.89,.32,1.28),
+        opacity .6s ease;
+
+}
+
+
+.paper.fold-3 .final-mark {
+
+    opacity:
+        1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+}
+
+
+.final-mark::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 49%,
+            rgba(91,72,43,.18) 50%,
+            transparent 51%
+        ),
+        linear-gradient(
+            45deg,
+            transparent 49%,
+            rgba(91,72,43,.18) 50%,
+            transparent 51%
+        );
+
+    border:
+        1px solid
+        rgba(72,56,35,.2);
+
+    transform:
+        rotate(45deg);
+
+}
+
+
+.final-mark span {
+
+    position:
+        absolute;
+
+    width:
+        40px;
+
+    height:
+        40px;
+
+    left:
+        30px;
+
+    top:
+        30px;
+
+    border:
+        1px solid
+        rgba(72,56,35,.5);
+
+    transform:
+        rotate(45deg);
+
+}
+
+
+.final-mark b {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        17px;
+
+    font-weight:
+        400;
+
+    color:
+        #4b3f30;
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress {
+
+    position:
+        absolute;
+
+    top:
+        12px;
+
+    left:
+        50%;
+
+    transform:
+        translateX(-50%);
+
+    display:
+        flex;
+
+    gap:
+        8px;
+
+    z-index:
+        30;
+
+}
+
+
+.progress-dot {
+
+    width:
+        34px;
+
+    height:
+        2px;
+
+    background:
+        rgba(48,40,29,.18);
+
+    transition:
+        background .3s ease,
+        width .3s ease;
+
+}
+
+
+.progress-dot.active {
+
+    width:
+        42px;
+
+    background:
+        #3d352b;
+
+}
+
+
+/* =========================================================
+   INSTRUCTION
+========================================================= */
+
+.instruction {
+
+    position:
+        absolute;
+
+    bottom:
+        30px;
+
+    left:
+        50%;
+
+    transform:
+        translateX(-50%);
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    color:
+        #787062;
+
+    font-size:
+        11px;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        .15em;
+
+}
+
+
+.instruction strong {
+
+    color:
+        #3f382e;
+
+}
+
+
+/* =========================================================
+   WRITE OVERLAY
+========================================================= */
+
+.write-overlay {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        500;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        25px;
+
+    background:
+        rgba(239,235,226,.74);
+
+    backdrop-filter:
+        blur(16px);
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity .35s ease;
+
+}
+
+
+.write-overlay.open {
+
+    opacity:
+        1;
+
+    pointer-events:
+        auto;
+
+}
+
+
+/* =========================================================
+   WRITE CARD
+========================================================= */
+
+.write-card {
+
+    width:
+        min(720px,100%);
+
+    position:
+        relative;
+
+    padding:
+        40px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffdf6,
+            #f8f1de
+        );
+
+    border:
+        1px solid
+        rgba(75,61,40,.15);
+
+    box-shadow:
+        0 35px 100px
+        rgba(52,43,29,.18);
+
+    transform:
+        translateY(25px)
+        scale(.97);
+
+    transition:
+        transform .4s var(--ease);
+
+}
+
+
+.write-overlay.open
+.write-card {
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+.write-card h2 {
+
+    margin-bottom:
+        8px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        38px;
+
+    font-weight:
+        400;
+
+}
+
+
+.write-card p {
+
+    margin-bottom:
+        28px;
+
+    color:
+        var(--muted);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    line-height:
+        1.6;
+
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.field {
+
+    margin-bottom:
+        18px;
+
+}
+
+
+.field label {
+
+    display:
+        block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        #706758;
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        .18em;
+
+}
+
+
+.input,
+.textarea {
+
+    width:
+        100%;
+
+    padding:
+        14px 16px;
+
+    border:
+        1px solid
+        rgba(66,53,34,.17);
+
+    outline:
+        none;
+
+    background:
+        rgba(255,255,255,.65);
+
+    color:
+        var(--ink);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        16px;
+
+    transition:
+        border .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+.textarea {
+
+    min-height:
+        200px;
+
+    resize:
+        vertical;
+
+    line-height:
+        1.65;
+
+}
+
+
+.input:focus,
+.textarea:focus {
+
+    border-color:
+        rgba(66,53,34,.4);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(66,53,34,.05);
+
+}
+
+
+/* =========================================================
+   WRITE FOOTER
+========================================================= */
+
+.write-footer {
+
+    margin-top:
+        24px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+}
+
+
+.character-count {
+
+    color:
+        #867d6f;
+
+    font-size:
+        11px;
+
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.close-write {
+
+    position:
+        absolute;
+
+    top:
+        16px;
+
+    right:
+        16px;
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border:
+        0;
+
+    background:
+        transparent;
+
+    color:
+        #625a4f;
+
+    font-size:
+        24px;
+
+    cursor:
+        pointer;
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+
+    position:
+        fixed;
+
+    left:
+        50%;
+
+    bottom:
+        28px;
+
+    z-index:
+        1000;
+
+    padding:
+        12px 18px;
+
+    border-radius:
+        999px;
+
+    background:
+        #28241f;
+
+    color:
+        #ffffff;
+
+    font-size:
+        12px;
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    transform:
+        translate(-50%,20px);
+
+    transition:
+        opacity .3s ease,
+        transform .3s ease;
+
+}
+
+
+.toast.show {
+
+    opacity:
+        1;
+
+    transform:
+        translate(-50%,0);
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+
+    position:
+        fixed;
+
+    left:
+        0;
+
+    right:
+        0;
+
+    bottom:
+        0;
+
+    z-index:
+        50;
+
+    height:
+        55px;
+
+    padding:
+        0 28px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    color:
+        #81796d;
+
+    font-size:
+        10px;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        .15em;
+
+}
+
+
+/* =========================================================
+   TABLET / MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .topbar {
+
+        height:
+            66px;
+
+        padding:
+            0 18px;
+
+    }
+
+
+    .brand span {
+
+        display:
+            none;
+
+    }
+
+
+    .top-actions
+    .btn.secondary {
+
+        display:
+            none;
+
+    }
+
+
+    .hero {
+
+        padding-top:
+            20px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            48px;
+
+    }
+
+
+    .hero p {
+
+        max-width:
+            330px;
+
+        font-size:
+            14px;
+
+    }
+
+
+    .workspace {
+
+        min-height:
+            650px;
+
+        padding:
+            30px 10px 90px;
+
+    }
+
+
+    .scene {
+
+        width:
+            95vw;
+
+        height:
+            110vw;
+
+        max-height:
+            none;
+
+    }
+
+
+    .paper {
+
+        width:
+            92vw;
+
+    }
+
+
+    .paper.fold-3 {
+
+        width:
+            210px;
+
+    }
+
+
+    .letter-content {
+
+        padding:
+            30px;
+
+    }
+
+
+    .letter-title {
+
+        font-size:
+            27px;
+
+    }
+
+
+    .message-preview {
+
+        max-width:
+            85%;
+
+        font-size:
+            14px;
+
+    }
+
+
+    .write-card {
+
+        padding:
+            30px 22px;
+
+    }
+
+
+    .write-card h2 {
+
+        font-size:
+            31px;
+
+    }
+
+
+    .write-footer {
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+
+    }
+
+
+    .write-footer .btn {
+
+        width:
+            100%;
+
+    }
+
+
+    .instruction {
+
+        bottom:
+            75px;
+
+    }
+
+
+    .footer {
+
+        height:
+            44px;
+
+        padding:
+            0 15px;
+
+        font-size:
+            8px;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .hero h1 {
+
+        font-size:
+            40px;
+
+    }
+
+
+    .hero p {
+
+        font-size:
+            13px;
+
+    }
+
+
+    .letter-content {
+
+        padding:
+            24px;
+
+    }
+
+
+    .letter-title {
+
+        font-size:
+            23px;
+
+    }
+
+
+    .message-preview {
+
+        margin-top:
+            16px;
+
+        font-size:
+            13px;
+
+    }
+
+
+    .signature {
+
+        font-size:
+            21px;
+
+    }
+
+
+    .corner {
+
+        width:
+            32px;
+
+        height:
+            32px;
+
+    }
+
+
+    .corner.tl,
+    .corner.tr {
+
+        top:
+            14px;
+
+    }
+
+
+    .corner.bl,
+    .corner.br {
+
+        bottom:
+            14px;
+
+    }
+
+
+    .corner.tl,
+    .corner.bl {
+
+        left:
+            14px;
+
+    }
+
+
+    .corner.tr,
+    .corner.br {
+
+        right:
+            14px;
+
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+button,
+input,
+textarea {
+
+    font: inherit;
+
+}
+
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+.scene:focus-visible {
+
+    outline:
+        2px solid #574b3d;
+
+    outline-offset:
+        4px;
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            .01ms !important;
+
+        scroll-behavior:
+            auto !important;
+
+    }
+
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+    body {
+
+        background:
+            #ffffff;
+
+    }
+
+
+    .topbar,
+    .hero,
+    .progress,
+    .instruction,
+    .footer,
+    .write-overlay,
+    .toast,
+    .paper-shadow {
+
+        display:
+            none !important;
+
+    }
+
+
+    .workspace {
+
+        min-height:
+            auto;
+
+        padding:
+            0;
+
+    }
+
+
+    .scene {
+
+        width:
+            100%;
+
+        height:
+            auto;
+
+        max-height:
+            none;
+
+    }
+
+
+    .paper {
+
+        width:
+            90vw !important;
+
+        height:
+            62vw !important;
+
+    }
+
+
+    .panel {
+
+        transform:
+            none !important;
+
+        opacity:
+            1 !important;
+
+    }
+
+
+    .letter-content {
+
+        opacity:
+            1 !important;
+
+    }
+
+
+    .final-mark {
+
+        display:
+            none !important;
+
+    }
+
+}

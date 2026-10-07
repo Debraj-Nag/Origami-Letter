@@ -1,1115 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Interactive digital origami letter">
-<title>Origami Letter</title>
+    <meta charset="UTF-8">
 
-<style>
-/* =========================================================
-   RESET
-========================================================= */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
-}
+    <meta
+        name="description"
+        content="A digital interactive origami letter"
+    >
 
-body {
-    font-family:
-        Inter,
-        ui-sans-serif,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+    <title>Digital Origami Letter</title>
 
-    background:
-        radial-gradient(
-            circle at 50% 25%,
-            #ffffff 0%,
-            #f7f4ed 38%,
-            #ebe6dc 100%
-        );
-
-    color: #29251f;
-    overflow-x: hidden;
-}
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-:root {
-    --paper: #f7f0dc;
-    --paper-light: #fffaf0;
-    --paper-dark: #dfd1b1;
-    --ink: #28231d;
-    --muted: #766f63;
-    --line: rgba(40, 35, 29, 0.15);
-    --accent: #6c5a45;
-    --shadow: rgba(35, 29, 20, 0.20);
-}
-
-/* =========================================================
-   APP
-========================================================= */
-.app {
-    min-height: 100vh;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-/* =========================================================
-   TOP BAR
-========================================================= */
-.topbar {
-    width: 100%;
-    height: 76px;
-    padding: 0 32px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    position: relative;
-    z-index: 100;
-}
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-.brand-mark {
-    width: 30px;
-    height: 30px;
-    position: relative;
-    transform: rotate(45deg);
-}
-
-.brand-mark::before,
-.brand-mark::after {
-    content: "";
-    position: absolute;
-    inset: 5px;
-
-    border: 1px solid #453c30;
-}
-
-.brand-mark::after {
-    transform: rotate(45deg);
-}
-
-.top-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-.btn {
-    border: 1px solid rgba(40, 35, 29, 0.18);
-    background: rgba(255,255,255,0.55);
-
-    color: var(--ink);
-
-    min-height: 42px;
-    padding: 0 17px;
-
-    border-radius: 999px;
-
-    cursor: pointer;
-
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-    background: rgba(255,255,255,0.85);
-    box-shadow: 0 8px 25px rgba(40,35,29,0.08);
-}
-
-.btn.primary {
-    background: #2d2923;
-    color: #fff;
-    border-color: #2d2923;
-}
-
-.btn.primary:hover {
-    background: #181511;
-}
-
-/* =========================================================
-   HERO
-========================================================= */
-.hero {
-    text-align: center;
-    padding: 16px 20px 0;
-}
-
-.eyebrow {
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.28em;
-    font-size: 10px;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.hero h1 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-weight: 400;
-    font-size: clamp(42px, 6vw, 72px);
-    letter-spacing: -0.05em;
-    line-height: 0.95;
-}
-
-.hero p {
-    max-width: 620px;
-    margin: 18px auto 0;
-
-    color: #736c61;
-
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-/* =========================================================
-   MAIN STAGE
-========================================================= */
-.workspace {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding:
-        42px
-        20px
-        80px;
-
-    position: relative;
-}
-
-/* =========================================================
-   ORIGAMI SHADOW
-========================================================= */
-.paper-shadow {
-    position: absolute;
-
-    width: min(75vw, 760px);
-    height: min(30vw, 300px);
-
-    background: rgba(54, 44, 30, 0.14);
-
-    filter: blur(40px);
-
-    border-radius: 50%;
-
-    transform:
-        translateY(145px)
-        scale(0.85);
-
-    transition:
-        transform 1.1s cubic-bezier(.2,.8,.2,1),
-        opacity 1.1s ease;
-}
-
-/* =========================================================
-   PAPER STAGE
-========================================================= */
-.scene {
-    position: relative;
-
-    width: min(88vw, 820px);
-    height: min(62vw, 540px);
-
-    max-height: 540px;
-
-    perspective: 1800px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* =========================================================
-   FLAT SHEET
-========================================================= */
-.paper {
-    position: relative;
-
-    width: min(82vw, 720px);
-    aspect-ratio: 1.45 / 1;
-
-    transform-style: preserve-3d;
-
-    transition:
-        transform 1.15s cubic-bezier(.2,.78,.2,1),
-        width 1s ease,
-        height 1s ease;
-
-    transform-origin: center center;
-}
-
-/* =========================================================
-   SHEET PANELS
-========================================================= */
-.panel {
-    position: absolute;
-
-    background-color: var(--paper);
-
-    overflow: hidden;
-
-    backface-visibility: hidden;
-
-    transform-style: preserve-3d;
-
-    border: 1px solid rgba(88,71,47,0.18);
-
-    box-shadow:
-        0 18px 50px rgba(48, 40, 28, 0.12),
-        inset 0 0 30px rgba(100,80,45,0.04);
-
-    transition:
-        transform 1.15s cubic-bezier(.2,.78,.2,1),
-        opacity 1.0s ease;
-}
-
-/* subtle paper grain */
-.panel::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background:
-        repeating-linear-gradient(
-            0deg,
-            rgba(100, 82, 54, 0.025) 0px,
-            rgba(100, 82, 54, 0.025) 1px,
-            transparent 1px,
-            transparent 4px
-        );
-
-    pointer-events: none;
-}
-
-/* Decorative geometry */
-.panel::after {
-    content: "";
-
-    position: absolute;
-
-    width: 90%;
-    height: 90%;
-
-    left: 5%;
-    top: 5%;
-
-    border:
-        1px solid rgba(78,63,42,0.12);
-
-    opacity: 0.7;
-
-    pointer-events: none;
-}
-
-/* =========================================================
-   FOUR MAIN PANELS
-========================================================= */
-
-.panel.center {
-    left: 25%;
-    top: 0;
-
-    width: 50%;
-    height: 100%;
-
-    z-index: 4;
-
-    transform-origin: center bottom;
-}
-
-.panel.left {
-    left: 0;
-    top: 0;
-
-    width: 25%;
-    height: 100%;
-
-    transform-origin: right center;
-
-    z-index: 3;
-}
-
-.panel.right {
-    right: 0;
-    top: 0;
-
-    width: 25%;
-    height: 100%;
-
-    transform-origin: left center;
-
-    z-index: 3;
-}
-
-.panel.top {
-    left: 25%;
-    top: 0;
-
-    width: 50%;
-    height: 50%;
-
-    opacity: 0;
-
-    transform-origin: center bottom;
-
-    z-index: 7;
-}
-
-/* =========================================================
-   LETTER CONTENT
-========================================================= */
-.letter-content {
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 10;
-
-    padding: 46px 54px;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: space-between;
-
-    pointer-events: none;
-}
-
-.letter-content.hidden {
-    opacity: 0;
-}
-
-/* decorative corner */
-.corner {
-    position: absolute;
-    width: 46px;
-    height: 46px;
-
-    border: 1px solid rgba(70,55,34,0.16);
-}
-
-.corner.tl {
-    top: 20px;
-    left: 20px;
-    border-right: 0;
-    border-bottom: 0;
-}
-
-.corner.tr {
-    top: 20px;
-    right: 20px;
-    border-left: 0;
-    border-bottom: 0;
-}
-
-.corner.bl {
-    bottom: 20px;
-    left: 20px;
-    border-right: 0;
-    border-top: 0;
-}
-
-.corner.br {
-    bottom: 20px;
-    right: 20px;
-    border-left: 0;
-    border-top: 0;
-}
-
-.letter-label {
-    text-transform: uppercase;
-    letter-spacing: .24em;
-
-    color: #817565;
-
-    font-size: 9px;
-    font-weight: 700;
-}
-
-.letter-title {
-    margin-top: 20px;
-
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: clamp(30px, 4vw, 50px);
-
-    line-height: 1;
-    font-weight: 400;
-
-    max-width: 80%;
-}
-
-.message-preview {
-    margin-top: 24px;
-
-    max-width: 70%;
-
-    color: #50483c;
-
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: clamp(15px, 1.8vw, 20px);
-
-    line-height: 1.65;
-
-    white-space: pre-wrap;
-
-    overflow: hidden;
-
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
-}
-
-.signature {
-    align-self: flex-end;
-
-    font-family: "Brush Script MT", cursive;
-
-    font-size: 26px;
-
-    color: #50483d;
-}
-
-/* =========================================================
-   ENVELOPE / FINAL FORM
-========================================================= */
-.final-mark {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%, -50%)
-        scale(0);
-
-    z-index: 40;
-
-    width: 100px;
-    height: 100px;
-
-    opacity: 0;
-
-    transition:
-        transform 0.9s cubic-bezier(.18,.89,.32,1.28),
-        opacity 0.6s ease;
-}
-
-.final-mark::before {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            135deg,
-            transparent 49%,
-            rgba(91,72,43,0.18) 50%,
-            transparent 51%
-        ),
-        linear-gradient(
-            45deg,
-            transparent 49%,
-            rgba(91,72,43,0.18) 50%,
-            transparent 51%
-        );
-
-    border: 1px solid rgba(72,56,35,0.2);
-
-    transform: rotate(45deg);
-}
-
-.final-mark span {
-    position: absolute;
-
-    width: 40px;
-    height: 40px;
-
-    left: 30px;
-    top: 30px;
-
-    border: 1px solid rgba(72,56,35,0.5);
-
-    transform: rotate(45deg);
-}
-
-.final-mark b {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    font-family: Georgia, serif;
-
-    font-size: 17px;
-
-    color: #4b3f30;
-
-    font-weight: 400;
-}
-
-/* =========================================================
-   FOLD STATE: 1
-========================================================= */
-
-.paper.fold-1 .panel.left {
-    transform: rotateY(-175deg);
-}
-
-.paper.fold-1 .panel.right {
-    transform: rotateY(175deg);
-}
-
-/* =========================================================
-   FOLD STATE: 2
-========================================================= */
-
-.paper.fold-2 .panel.left {
-    transform: rotateY(-180deg);
-}
-
-.paper.fold-2 .panel.right {
-    transform: rotateY(180deg);
-}
-
-.paper.fold-2 .panel.center {
-    transform:
-        rotateX(78deg)
-        translateY(-20px);
-}
-
-.paper.fold-2 .panel.top {
-    opacity: 1;
-
-    transform:
-        rotateX(-165deg);
-}
-
-/* =========================================================
-   FOLD STATE: 3
-========================================================= */
-
-.paper.fold-3 {
-    width: 250px;
-    aspect-ratio: 1 / 1;
-}
-
-.paper.fold-3 .panel.left {
-    transform:
-        rotateY(-180deg)
-        translateX(20px);
-}
-
-.paper.fold-3 .panel.right {
-    transform:
-        rotateY(180deg)
-        translateX(-20px);
-}
-
-.paper.fold-3 .panel.center {
-    transform:
-        rotateX(87deg)
-        translateY(-125px)
-        scale(0.84);
-}
-
-.paper.fold-3 .panel.top {
-    opacity: 1;
-
-    transform:
-        rotateX(-178deg)
-        translateY(5px)
-        scale(0.88);
-
-    box-shadow:
-        0 20px 50px rgba(30,24,17,.22);
-}
-
-.paper.fold-3 .letter-content {
-    opacity: 0;
-}
-
-.paper.fold-3 .final-mark {
-    opacity: 1;
-
-    transform:
-        translate(-50%, -50%)
-        scale(1);
-}
-
-/* =========================================================
-   INSTRUCTION
-========================================================= */
-.instruction {
-    position: absolute;
-
-    bottom: 30px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    gap: 8px;
-
-    color: #787062;
-
-    font-size: 11px;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.15em;
-
-    transition: opacity .3s ease;
-}
-
-.instruction strong {
-    color: #3f382e;
-}
-
-/* =========================================================
-   PROGRESS
-========================================================= */
-.progress {
-    position: absolute;
-
-    top: 12px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    display: flex;
-    gap: 8px;
-
-    z-index: 30;
-}
-
-.progress-dot {
-    width: 34px;
-    height: 2px;
-
-    background: rgba(48,40,29,.18);
-
-    transition: background .3s ease;
-}
-
-.progress-dot.active {
-    background: #3d352b;
-}
-
-/* =========================================================
-   WRITE PANEL
-========================================================= */
-.write-overlay {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 500;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 25px;
-
-    background:
-        rgba(239,235,226,.74);
-
-    backdrop-filter: blur(16px);
-
-    opacity: 0;
-    pointer-events: none;
-
-    transition:
-        opacity .35s ease;
-}
-
-.write-overlay.open {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.write-card {
-    width: min(720px, 100%);
-
-    background:
-        linear-gradient(
-            135deg,
-            #fffdf6,
-            #f8f1de
-        );
-
-    border:
-        1px solid rgba(75,61,40,.15);
-
-    box-shadow:
-        0 35px 100px rgba(52,43,29,.18);
-
-    padding: 40px;
-
-    transform:
-        translateY(25px)
-        scale(.97);
-
-    transition:
-        transform .4s cubic-bezier(.2,.8,.2,1);
-
-    position: relative;
-}
-
-.write-overlay.open .write-card {
-    transform:
-        translateY(0)
-        scale(1);
-}
-
-.write-card h2 {
-    font-family: Georgia, serif;
-
-    font-size: 38px;
-    font-weight: 400;
-
-    margin-bottom: 8px;
-}
-
-.write-card p {
-    color: var(--muted);
-    line-height: 1.6;
-
-    margin-bottom: 28px;
-
-    font-family: Georgia, serif;
-}
-
-.field {
-    margin-bottom: 18px;
-}
-
-.field label {
-    display: block;
-
-    font-size: 10px;
-
-    text-transform: uppercase;
-
-    letter-spacing: .18em;
-
-    color: #706758;
-
-    margin-bottom: 8px;
-}
-
-.input,
-.textarea {
-    width: 100%;
-
-    border:
-        1px solid rgba(66,53,34,.17);
-
-    background:
-        rgba(255,255,255,.65);
-
-    color: var(--ink);
-
-    padding: 14px 16px;
-
-    outline: none;
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    font-size: 16px;
-
-    transition:
-        border .2s ease,
-        box-shadow .2s ease;
-}
-
-.textarea {
-    min-height: 200px;
-
-    resize: vertical;
-
-    line-height: 1.65;
-}
-
-.input:focus,
-.textarea:focus {
-    border-color: rgba(66,53,34,.4);
-
-    box-shadow:
-        0 0 0 4px rgba(66,53,34,.05);
-}
-
-.write-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    gap: 15px;
-
-    margin-top: 24px;
-}
-
-.character-count {
-    color: #867d6f;
-
-    font-size: 11px;
-}
-
-.close-write {
-    position: absolute;
-
-    top: 16px;
-    right: 16px;
-
-    border: 0;
-    background: transparent;
-
-    width: 38px;
-    height: 38px;
-
-    cursor: pointer;
-
-    font-size: 24px;
-
-    color: #625a4f;
-}
-
-/* =========================================================
-   TOAST
-========================================================= */
-.toast {
-    position: fixed;
-
-    left: 50%;
-    bottom: 28px;
-
-    z-index: 1000;
-
-    transform:
-        translate(-50%, 20px);
-
-    background: #28241f;
-
-    color: white;
-
-    padding: 12px 18px;
-
-    border-radius: 999px;
-
-    font-size: 12px;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transition:
-        opacity .3s ease,
-        transform .3s ease;
-}
-
-.toast.show {
-    opacity: 1;
-
-    transform:
-        translate(-50%, 0);
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-.footer {
-    position: fixed;
-
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    height: 55px;
-
-    padding:
-        0 28px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    z-index: 50;
-
-    color: #81796d;
-
-    font-size: 10px;
-
-    text-transform: uppercase;
-
-    letter-spacing: .15em;
-
-    pointer-events: none;
-}
-
-.footer span {
-    pointer-events: auto;
-}
-
-/* =========================================================
-   MOBILE
-========================================================= */
-@media (max-width: 700px) {
-
-    .topbar {
-        height: 66px;
-        padding: 0 18px;
-    }
-
-    .brand span {
-        display: none;
-    }
-
-    .top-actions .btn.secondary {
-        display: none;
-    }
-
-    .hero {
-        padding-top: 20px;
-    }
-
-    .hero h1 {
-        font-size: 48px;
-    }
-
-    .hero p {
-        font-size: 14px;
-        max-width: 330px;
-    }
-
-    .workspace {
-        padding:
-            30px 10px 90px;
-    }
-
-    .scene {
-        width: 95vw;
-        height: 110vw;
-        max-height: none;
-    }
-
-    .paper {
-        width: 92vw;
-    }
-
-    .paper.fold-3 {
-        width: 210px;
-    }
-
-    .letter-content {
-        padding: 30px;
-    }
-
-    .letter-title {
-        font-size: 27px;
-    }
-
-    .message-preview {
-        max-width: 85%;
-        font-size: 14px;
-    }
-
-    .write-card {
-        padding: 30px 22px;
-    }
-
-    .write-card h2 {
-        font-size: 31px;
-    }
-
-    .write-footer {
-        align-items: stretch;
-        flex-direction: column;
-    }
-
-    .write-footer .btn {
-        width: 100%;
-    }
-
-    .instruction {
-        bottom: 75px;
-    }
-
-    .footer {
-        height: 44px;
-        padding: 0 15px;
-        font-size: 8px;
-    }
-}
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-    }
-}
-</style>
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -1117,26 +24,36 @@ body {
 <div class="app">
 
     <!-- =====================================================
-         TOP BAR
+         HEADER
     ====================================================== -->
+
     <header class="topbar">
 
         <div class="brand">
+
             <div class="brand-mark"></div>
-            <span>Origami Letter</span>
+
+            <span>
+                Origami Letter
+            </span>
+
         </div>
 
         <div class="top-actions">
 
             <button
+                type="button"
                 class="btn secondary"
-                id="writeButton">
+                id="writeButton"
+            >
                 Write a letter
             </button>
 
             <button
+                type="button"
                 class="btn primary"
-                id="shareButton">
+                id="shareButton"
+            >
                 Share
             </button>
 
@@ -1146,8 +63,9 @@ body {
 
 
     <!-- =====================================================
-         HERO
+         INTRODUCTION
     ====================================================== -->
+
     <section class="hero">
 
         <div class="eyebrow">
@@ -1159,40 +77,82 @@ body {
         </h1>
 
         <p>
-            Write something meaningful, then fold it into a
-            small paper keepsake with a few simple movements.
+            Write something meaningful, place it on the paper,
+            and fold it into a beautiful digital origami letter.
         </p>
 
     </section>
 
 
     <!-- =====================================================
-         WORKSPACE
+         MAIN WORKSPACE
     ====================================================== -->
+
     <main class="workspace">
 
-        <div class="paper-shadow" id="paperShadow"></div>
+        <!-- Paper shadow -->
 
-        <div class="progress">
+        <div
+            class="paper-shadow"
+            id="paperShadow"
+        ></div>
 
-            <div class="progress-dot active" id="dot0"></div>
-            <div class="progress-dot" id="dot1"></div>
-            <div class="progress-dot" id="dot2"></div>
-            <div class="progress-dot" id="dot3"></div>
+
+        <!-- Folding progress -->
+
+        <div
+            class="progress"
+            aria-label="Folding progress"
+        >
+
+            <div
+                class="progress-dot active"
+                id="dot0"
+            ></div>
+
+            <div
+                class="progress-dot"
+                id="dot1"
+            ></div>
+
+            <div
+                class="progress-dot"
+                id="dot2"
+            ></div>
+
+            <div
+                class="progress-dot"
+                id="dot3"
+            ></div>
 
         </div>
 
 
+        <!-- =================================================
+             3D SCENE
+        ================================================== -->
+
         <div
             class="scene"
             id="scene"
-            aria-label="Interactive origami letter">
+            role="button"
+            tabindex="0"
+            aria-label="Interactive origami paper"
+        >
+
+            <!-- =================================================
+                 PAPER
+            ================================================== -->
 
             <div
                 class="paper"
-                id="paper">
+                id="paper"
+            >
 
-                <!-- CENTER PANEL -->
+                <!-- =========================================
+                     CENTER PANEL
+                ========================================== -->
+
                 <div class="panel center">
 
                     <div class="corner tl"></div>
@@ -1203,22 +163,35 @@ body {
                 </div>
 
 
-                <!-- LEFT PANEL -->
+                <!-- =========================================
+                     LEFT PANEL
+                ========================================== -->
+
                 <div class="panel left"></div>
 
 
-                <!-- RIGHT PANEL -->
+                <!-- =========================================
+                     RIGHT PANEL
+                ========================================== -->
+
                 <div class="panel right"></div>
 
 
-                <!-- TOP PANEL -->
+                <!-- =========================================
+                     TOP FOLD PANEL
+                ========================================== -->
+
                 <div class="panel top"></div>
 
 
-                <!-- MESSAGE -->
+                <!-- =========================================
+                     LETTER CONTENT
+                ========================================== -->
+
                 <div
                     class="letter-content"
-                    id="letterContent">
+                    id="letterContent"
+                >
 
                     <div>
 
@@ -1228,13 +201,15 @@ body {
 
                         <div
                             class="letter-title"
-                            id="displayTitle">
+                            id="displayTitle"
+                        >
                             A little message
                         </div>
 
                         <div
                             class="message-preview"
-                            id="displayMessage">
+                            id="displayMessage"
+                        >
                             Your message will appear here.
                         </div>
 
@@ -1242,27 +217,41 @@ body {
 
                     <div
                         class="signature"
-                        id="displaySignature">
+                        id="displaySignature"
+                    >
                         — From me
                     </div>
 
                 </div>
 
 
-                <!-- FINAL FOLDED SYMBOL -->
+                <!-- =========================================
+                     FINAL ORIGAMI SYMBOL
+                ========================================== -->
+
                 <div class="final-mark">
+
                     <span></span>
-                    <b>✦</b>
+
+                    <b>
+                        ✦
+                    </b>
+
                 </div>
 
             </div>
+
         </div>
 
 
-        <!-- INSTRUCTION -->
+        <!-- =================================================
+             INSTRUCTION
+        ================================================== -->
+
         <div
             class="instruction"
-            id="instruction">
+            id="instruction"
+        >
 
             <span id="instructionSmall">
                 Tap the paper
@@ -1280,6 +269,7 @@ body {
     <!-- =====================================================
          FOOTER
     ====================================================== -->
+
     <footer class="footer">
 
         <span>
@@ -1296,18 +286,22 @@ body {
 
 
 <!-- =========================================================
-     WRITE OVERLAY
+     WRITE LETTER MODAL
 ========================================================== -->
+
 <div
     class="write-overlay"
-    id="writeOverlay">
+    id="writeOverlay"
+>
 
     <div class="write-card">
 
         <button
+            type="button"
             class="close-write"
             id="closeWrite"
-            aria-label="Close">
+            aria-label="Close letter editor"
+        >
             ×
         </button>
 
@@ -1317,10 +311,12 @@ body {
         </h2>
 
         <p>
-            Put your words on the paper. They will become
-            part of the digital origami as it folds.
+            Enter your message below. It will appear on the
+            digital paper before it is folded.
         </p>
 
+
+        <!-- Title -->
 
         <div class="field">
 
@@ -1329,15 +325,18 @@ body {
             </label>
 
             <input
+                type="text"
                 class="input"
                 id="titleInput"
-                type="text"
                 maxlength="50"
                 value="A little message"
-                placeholder="Give your letter a title">
+                placeholder="Give your letter a title"
+            >
 
         </div>
 
+
+        <!-- Message -->
 
         <div class="field">
 
@@ -1349,10 +348,13 @@ body {
                 class="textarea"
                 id="messageInput"
                 maxlength="1200"
-                placeholder="Write your message here...">Your message will appear here.</textarea>
+                placeholder="Write your message here..."
+            >Your message will appear here.</textarea>
 
         </div>
 
+
+        <!-- Signature -->
 
         <div class="field">
 
@@ -1361,27 +363,33 @@ body {
             </label>
 
             <input
+                type="text"
                 class="input"
                 id="signatureInput"
-                type="text"
                 maxlength="40"
                 value="From me"
-                placeholder="Your name">
+                placeholder="Your name"
+            >
 
         </div>
 
+
+        <!-- Form footer -->
 
         <div class="write-footer">
 
             <div
                 class="character-count"
-                id="characterCount">
+                id="characterCount"
+            >
                 0 / 1200
             </div>
 
             <button
+                type="button"
                 class="btn primary"
-                id="saveLetter">
+                id="saveLetter"
+            >
                 Place on paper
             </button>
 
@@ -1395,27 +403,38 @@ body {
 <!-- =========================================================
      TOAST
 ========================================================== -->
+
 <div
     class="toast"
-    id="toast">
+    id="toast"
+    role="status"
+    aria-live="polite"
+>
     Copied!
 </div>
 
 
+<!-- =========================================================
+     JAVASCRIPT
+========================================================== -->
+
 <script>
+
+"use strict";
+
+
 /* =========================================================
-   ELEMENTS
+   ELEMENT REFERENCES
 ========================================================= */
 
-const paper = document.getElementById("paper");
+const paper =
+    document.getElementById("paper");
 
-const scene = document.getElementById("scene");
+const scene =
+    document.getElementById("scene");
 
 const paperShadow =
     document.getElementById("paperShadow");
-
-const instruction =
-    document.getElementById("instruction");
 
 const instructionSmall =
     document.getElementById("instructionSmall");
@@ -1423,11 +442,11 @@ const instructionSmall =
 const instructionMain =
     document.getElementById("instructionMain");
 
-const writeOverlay =
-    document.getElementById("writeOverlay");
-
 const writeButton =
     document.getElementById("writeButton");
+
+const writeOverlay =
+    document.getElementById("writeOverlay");
 
 const closeWrite =
     document.getElementById("closeWrite");
@@ -1476,35 +495,46 @@ const dots = [
 
 let foldState = 0;
 
-let startX = null;
-let startY = null;
+let touchStartX = null;
+let touchStartY = null;
+
+let toastTimer = null;
 
 
 /* =========================================================
-   LETTER DATA
+   LETTER
 ========================================================= */
 
 let letter = {
+
     title: "A little message",
-    message: "Your message will appear here.",
-    signature: "From me"
+
+    message:
+        "Your message will appear here.",
+
+    signature:
+        "From me"
+
 };
 
 
 /* =========================================================
-   LOAD SHARED / SAVED LETTER
+   LOAD LETTER
 ========================================================= */
 
 function loadLetter() {
 
     const params =
-        new URLSearchParams(window.location.search);
+        new URLSearchParams(
+            window.location.search
+        );
 
-    if (
+    const hasSharedLetter =
         params.has("title") ||
         params.has("message") ||
-        params.has("from")
-    ) {
+        params.has("from");
+
+    if (hasSharedLetter) {
 
         letter.title =
             params.get("title") ||
@@ -1521,36 +551,55 @@ function loadLetter() {
     } else {
 
         const saved =
-            localStorage.getItem("origamiLetter");
+            localStorage.getItem(
+                "origamiLetter"
+            );
 
         if (saved) {
 
             try {
-                letter = {
-                    ...letter,
-                    ...JSON.parse(saved)
-                };
+
+                const parsed =
+                    JSON.parse(saved);
+
+                if (
+                    parsed &&
+                    typeof parsed === "object"
+                ) {
+
+                    letter = {
+                        ...letter,
+                        ...parsed
+                    };
+
+                }
 
             } catch (error) {
+
                 console.warn(
-                    "Could not load saved letter."
+                    "Saved letter could not be loaded."
                 );
+
             }
+
         }
+
     }
 
-    updateDisplayedLetter();
+    updateLetterDisplay();
+
 }
 
 
 /* =========================================================
-   UPDATE LETTER DISPLAY
+   UPDATE DISPLAY
 ========================================================= */
 
-function updateDisplayedLetter() {
+function updateLetterDisplay() {
 
     displayTitle.textContent =
-        letter.title || "A little message";
+        letter.title ||
+        "A little message";
 
     displayMessage.textContent =
         letter.message ||
@@ -1558,18 +607,22 @@ function updateDisplayedLetter() {
 
     displaySignature.textContent =
         "— " +
-        (letter.signature || "From me");
+        (
+            letter.signature ||
+            "From me"
+        );
 
     titleInput.value =
-        letter.title;
+        letter.title || "";
 
     messageInput.value =
-        letter.message;
+        letter.message || "";
 
     signatureInput.value =
-        letter.signature;
+        letter.signature || "";
 
     updateCharacterCount();
+
 }
 
 
@@ -1580,8 +633,8 @@ function updateDisplayedLetter() {
 function updateCharacterCount() {
 
     characterCount.textContent =
-        messageInput.value.length +
-        " / 1200";
+        `${messageInput.value.length} / 1200`;
+
 }
 
 messageInput.addEventListener(
@@ -1591,22 +644,37 @@ messageInput.addEventListener(
 
 
 /* =========================================================
-   WRITE PANEL
+   OPEN WRITER
 ========================================================= */
 
 function openWriter() {
 
-    writeOverlay.classList.add("open");
+    writeOverlay.classList.add(
+        "open"
+    );
 
-    setTimeout(() => {
-        titleInput.focus();
-    }, 250);
+    setTimeout(
+        () => {
+            titleInput.focus();
+        },
+        250
+    );
+
 }
+
+
+/* =========================================================
+   CLOSE WRITER
+========================================================= */
 
 function closeWriter() {
 
-    writeOverlay.classList.remove("open");
+    writeOverlay.classList.remove(
+        "open"
+    );
+
 }
+
 
 writeButton.addEventListener(
     "click",
@@ -1618,6 +686,11 @@ closeWrite.addEventListener(
     closeWriter
 );
 
+
+/* =========================================================
+   CLICK OUTSIDE WRITER
+========================================================= */
+
 writeOverlay.addEventListener(
     "click",
     event => {
@@ -1626,8 +699,11 @@ writeOverlay.addEventListener(
             event.target ===
             writeOverlay
         ) {
+
             closeWriter();
+
         }
+
     }
 );
 
@@ -1648,7 +724,7 @@ saveLetter.addEventListener(
 
             message:
                 messageInput.value.trim() ||
-                "",
+                "Your message will appear here.",
 
             signature:
                 signatureInput.value.trim() ||
@@ -1656,35 +732,42 @@ saveLetter.addEventListener(
 
         };
 
+
         localStorage.setItem(
             "origamiLetter",
             JSON.stringify(letter)
         );
 
-        updateDisplayedLetter();
+
+        updateLetterDisplay();
 
         closeWriter();
 
-        resetFold();
+        setFoldState(0);
 
         showToast(
             "Your letter is ready."
         );
+
     }
 );
 
 
 /* =========================================================
-   FOLDING
+   SET FOLD STATE
 ========================================================= */
 
-function setFoldState(nextState) {
+function setFoldState(state) {
 
     foldState =
         Math.max(
             0,
-            Math.min(3, nextState)
+            Math.min(
+                3,
+                state
+            )
         );
+
 
     paper.classList.remove(
         "fold-1",
@@ -1692,23 +775,40 @@ function setFoldState(nextState) {
         "fold-3"
     );
 
+
     if (foldState === 1) {
-        paper.classList.add("fold-1");
+
+        paper.classList.add(
+            "fold-1"
+        );
+
     }
+
 
     if (foldState === 2) {
-        paper.classList.add("fold-2");
+
+        paper.classList.add(
+            "fold-2"
+        );
+
     }
 
+
     if (foldState === 3) {
-        paper.classList.add("fold-3");
+
+        paper.classList.add(
+            "fold-3"
+        );
+
     }
+
 
     updateProgress();
 
     updateInstruction();
 
-    updateShadow();
+    updatePaperShadow();
+
 }
 
 
@@ -1726,37 +826,82 @@ function nextFold() {
 
     } else {
 
-        /*
-         * Clicking the finished origami
-         * unfolds it again.
-         */
         setFoldState(0);
+
     }
+
 }
 
 
 /* =========================================================
-   RESET
+   PREVIOUS FOLD
 ========================================================= */
 
-function resetFold() {
+function previousFold() {
 
-    setFoldState(0);
+    if (foldState > 0) {
+
+        setFoldState(
+            foldState - 1
+        );
+
+    }
+
 }
 
 
 /* =========================================================
-   CLICK / TAP
+   MOUSE CLICK
 ========================================================= */
 
 scene.addEventListener(
     "click",
-    nextFold
+    event => {
+
+        /*
+         * Ignore clicks on actual form controls
+         * if any are ever placed inside the scene.
+         */
+
+        if (
+            event.target.closest(
+                "button,input,textarea"
+            )
+        ) {
+            return;
+        }
+
+        nextFold();
+
+    }
 );
 
 
 /* =========================================================
-   SWIPE SUPPORT
+   KEYBOARD ACCESSIBILITY
+========================================================= */
+
+scene.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Enter" ||
+            event.key === " "
+        ) {
+
+            event.preventDefault();
+
+            nextFold();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   TOUCH START
 ========================================================= */
 
 scene.addEventListener(
@@ -1765,54 +910,71 @@ scene.addEventListener(
 
         if (
             !event.touches ||
-            !event.touches[0]
+            !event.touches.length
         ) {
             return;
         }
 
-        startX =
+        touchStartX =
             event.touches[0].clientX;
 
-        startY =
+        touchStartY =
             event.touches[0].clientY;
+
     },
-    { passive: true }
+    {
+        passive: true
+    }
 );
 
+
+/* =========================================================
+   TOUCH END
+========================================================= */
 
 scene.addEventListener(
     "touchend",
     event => {
 
         if (
-            startX === null ||
+            touchStartX === null ||
+            touchStartY === null ||
             !event.changedTouches ||
-            !event.changedTouches[0]
+            !event.changedTouches.length
         ) {
             return;
         }
 
+
+        const touch =
+            event.changedTouches[0];
+
         const endX =
-            event.changedTouches[0].clientX;
+            touch.clientX;
 
         const endY =
-            event.changedTouches[0].clientY;
+            touch.clientY;
 
-        const dx =
-            endX - startX;
 
-        const dy =
-            endY - startY;
+        const deltaX =
+            endX - touchStartX;
+
+        const deltaY =
+            endY - touchStartY;
+
 
         const distance =
             Math.sqrt(
-                dx * dx +
-                dy * dy
+                deltaX * deltaX +
+                deltaY * deltaY
             );
 
+
         /*
-         * Small movement = tap
+         * A very small movement is treated
+         * as a tap.
          */
+
         if (distance < 30) {
 
             nextFold();
@@ -1820,37 +982,58 @@ scene.addEventListener(
         } else {
 
             /*
-             * Swipe left / up = fold
-             * Swipe right / down = unfold
+             * Swipe left/up = fold
              */
+
             if (
-                dx < -30 ||
-                dy < -30
+                deltaX < -30 ||
+                deltaY < -30
             ) {
 
-                if (foldState < 3) {
-                    setFoldState(
-                        foldState + 1
-                    );
-                }
+                nextFold();
 
-            } else if (
-                dx > 30 ||
-                dy > 30
-            ) {
-
-                if (foldState > 0) {
-                    setFoldState(
-                        foldState - 1
-                    );
-                }
             }
+
+
+            /*
+             * Swipe right/down = unfold
+             */
+
+            if (
+                deltaX > 30 ||
+                deltaY > 30
+            ) {
+
+                previousFold();
+
+            }
+
         }
 
-        startX = null;
-        startY = null;
+
+        touchStartX = null;
+        touchStartY = null;
+
     },
-    { passive: true }
+    {
+        passive: true
+    }
+);
+
+
+/* =========================================================
+   DOUBLE CLICK = FULL UNFOLD
+========================================================= */
+
+paper.addEventListener(
+    "dblclick",
+    event => {
+
+        event.stopPropagation();
+
+        setFoldState(0);
+
+    }
 );
 
 
@@ -1867,8 +1050,10 @@ function updateProgress() {
                 "active",
                 index <= foldState
             );
+
         }
     );
+
 }
 
 
@@ -1878,65 +1063,81 @@ function updateProgress() {
 
 function updateInstruction() {
 
-    if (foldState === 0) {
+    switch (foldState) {
 
-        instructionSmall.textContent =
-            "Tap the paper";
+        case 0:
 
-        instructionMain.textContent =
-            "Fold";
+            instructionSmall.textContent =
+                "Tap or swipe the paper";
 
-    } else if (foldState === 1) {
+            instructionMain.textContent =
+                "Fold";
 
-        instructionSmall.textContent =
-            "One more movement";
+            break;
 
-        instructionMain.textContent =
-            "Fold again";
 
-    } else if (foldState === 2) {
+        case 1:
 
-        instructionSmall.textContent =
-            "Almost there";
+            instructionSmall.textContent =
+                "Continue folding";
 
-        instructionMain.textContent =
-            "Complete";
+            instructionMain.textContent =
+                "Fold again";
 
-    } else {
+            break;
 
-        instructionSmall.textContent =
-            "Tap or swipe the paper";
 
-        instructionMain.textContent =
-            "Unfold";
+        case 2:
+
+            instructionSmall.textContent =
+                "Almost there";
+
+            instructionMain.textContent =
+                "Complete";
+
+            break;
+
+
+        case 3:
+
+            instructionSmall.textContent =
+                "Tap or swipe to reopen";
+
+            instructionMain.textContent =
+                "Unfold";
+
+            break;
 
     }
+
 }
 
 
 /* =========================================================
-   SHADOW
+   PAPER SHADOW
 ========================================================= */
 
-function updateShadow() {
+function updatePaperShadow() {
 
     const scale =
         1 -
-        foldState * 0.18;
+        foldState * 0.17;
 
     const y =
         145 -
-        foldState * 15;
+        foldState * 16;
 
     const opacity =
         1 -
         foldState * 0.12;
+
 
     paperShadow.style.transform =
         `translateY(${y}px) scale(${scale})`;
 
     paperShadow.style.opacity =
         String(opacity);
+
 }
 
 
@@ -1951,20 +1152,24 @@ shareButton.addEventListener(
         const params =
             new URLSearchParams();
 
+
         params.set(
             "title",
             letter.title
         );
+
 
         params.set(
             "message",
             letter.message
         );
 
+
         params.set(
             "from",
             letter.signature
         );
+
 
         const shareURL =
             window.location.origin +
@@ -1972,14 +1177,13 @@ shareButton.addEventListener(
             "?" +
             params.toString();
 
+
         /*
-         * Native share API
+         * Native mobile sharing.
          */
+
         if (
-            navigator.share &&
-            /Android|iPhone|iPad|iPod/i.test(
-                navigator.userAgent
-            )
+            navigator.share
         ) {
 
             try {
@@ -1994,28 +1198,31 @@ shareButton.addEventListener(
 
                     url:
                         shareURL
+
                 });
 
                 return;
 
             } catch (error) {
 
-                /*
-                 * User cancelled sharing.
-                 */
                 if (
                     error &&
-                    error.name ===
-                    "AbortError"
+                    error.name === "AbortError"
                 ) {
+
                     return;
+
                 }
+
             }
+
         }
 
+
         /*
-         * Desktop clipboard fallback
+         * Clipboard fallback.
          */
+
         try {
 
             await navigator.clipboard.writeText(
@@ -2028,49 +1235,60 @@ shareButton.addEventListener(
 
         } catch (error) {
 
-            /*
-             * Last-resort prompt.
-             */
             window.prompt(
-                "Copy your letter link:",
+                "Copy this letter link:",
                 shareURL
             );
+
         }
+
     }
 );
 
 
 /* =========================================================
-   KEYBOARD CONTROLS
+   KEYBOARD SHORTCUTS
 ========================================================= */
 
 document.addEventListener(
     "keydown",
     event => {
 
-        /*
-         * Do not intercept typing.
-         */
+        const activeElement =
+            document.activeElement;
+
         const tag =
-            document.activeElement?.tagName;
+            activeElement
+                ? activeElement.tagName
+                : "";
+
+
+        /*
+         * Don't intercept keyboard input
+         * while typing the letter.
+         */
 
         if (
             tag === "INPUT" ||
             tag === "TEXTAREA"
         ) {
+
             return;
+
         }
+
 
         if (
             event.key === "ArrowRight" ||
-            event.key === "ArrowDown" ||
-            event.key === " "
+            event.key === "ArrowDown"
         ) {
 
             event.preventDefault();
 
             nextFold();
+
         }
+
 
         if (
             event.key === "ArrowLeft" ||
@@ -2079,25 +1297,39 @@ document.addEventListener(
 
             event.preventDefault();
 
-            if (foldState > 0) {
-                setFoldState(
-                    foldState - 1
-                );
-            }
+            previousFold();
+
         }
 
+
         if (
-            event.key.toLowerCase() ===
-            "w"
+            event.key === " "
         ) {
-            openWriter();
+
+            event.preventDefault();
+
+            nextFold();
+
         }
+
+
+        if (
+            event.key.toLowerCase() === "w"
+        ) {
+
+            openWriter();
+
+        }
+
 
         if (
             event.key === "Escape"
         ) {
+
             closeWriter();
+
         }
+
     }
 );
 
@@ -2105,8 +1337,6 @@ document.addEventListener(
 /* =========================================================
    TOAST
 ========================================================= */
-
-let toastTimer = null;
 
 function showToast(message) {
 
@@ -2117,9 +1347,11 @@ function showToast(message) {
         "show"
     );
 
+
     clearTimeout(
         toastTimer
     );
+
 
     toastTimer =
         setTimeout(
@@ -2132,38 +1364,29 @@ function showToast(message) {
             },
             2200
         );
+
 }
 
 
 /* =========================================================
-   INITIALIZATION
+   ESCAPE HTML FOR URL-SHARED CONTENT
 ========================================================= */
 
-loadLetter();
+function sanitizeSharedText(value) {
 
-setFoldState(0);
-
-
-/* =========================================================
-   OPTIONAL: DOUBLE CLICK TO UNFOLD
-========================================================= */
-
-paper.addEventListener(
-    "dblclick",
-    event => {
-
-        event.stopPropagation();
-
-        setFoldState(0);
-
+    if (
+        typeof value !== "string"
+    ) {
+        return "";
     }
-);
+
+    return value.trim();
+
+}
 
 
 /* =========================================================
-   PRINT / PDF SUPPORT
-
-   Ctrl + P / browser print can be used.
+   PRINT SUPPORT
 ========================================================= */
 
 window.addEventListener(
@@ -2171,24 +1394,28 @@ window.addEventListener(
     () => {
 
         /*
-         * Open the complete letter
+         * Always show the full letter
          * when printing.
          */
+
         paper.classList.remove(
             "fold-1",
             "fold-2",
             "fold-3"
         );
 
-        letterContentForPrint();
     }
 );
 
-function letterContentForPrint() {
 
-    document.body.dataset.printing =
-        "true";
-}
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+loadLetter();
+
+setFoldState(0);
+
 </script>
 
 </body>

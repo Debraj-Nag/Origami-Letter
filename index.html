@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
@@ -10,12 +9,11 @@
 
     <meta
         name="description"
-        content="A digital interactive origami letter"
+        content="Interactive digital origami crane letter"
     >
 
-    <title>Digital Origami Letter</title>
+    <title>Digital Origami Crane Letter</title>
 
-    <!-- Main stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -30,29 +28,27 @@
     <header class="topbar">
 
         <div class="brand">
-
             <div class="brand-mark"></div>
 
             <span>
                 Origami Letter
             </span>
-
         </div>
 
         <div class="top-actions">
 
             <button
-                type="button"
                 class="btn secondary"
                 id="writeButton"
+                type="button"
             >
                 Write a letter
             </button>
 
             <button
-                type="button"
                 class="btn primary"
                 id="shareButton"
+                type="button"
             >
                 Share
             </button>
@@ -63,7 +59,7 @@
 
 
     <!-- =====================================================
-         INTRODUCTION
+         INTRO
     ====================================================== -->
 
     <section class="hero">
@@ -77,20 +73,18 @@
         </h1>
 
         <p>
-            Write something meaningful, place it on the paper,
-            and fold it into a beautiful digital origami letter.
+            Write a message, then fold the paper into
+            an elegant Japanese origami crane.
         </p>
 
     </section>
 
 
     <!-- =====================================================
-         MAIN WORKSPACE
+         WORKSPACE
     ====================================================== -->
 
     <main class="workspace">
-
-        <!-- Paper shadow -->
 
         <div
             class="paper-shadow"
@@ -98,12 +92,9 @@
         ></div>
 
 
-        <!-- Folding progress -->
+        <!-- Progress -->
 
-        <div
-            class="progress"
-            aria-label="Folding progress"
-        >
+        <div class="progress">
 
             <div
                 class="progress-dot active"
@@ -125,23 +116,38 @@
                 id="dot3"
             ></div>
 
+            <div
+                class="progress-dot"
+                id="dot4"
+            ></div>
+
+            <div
+                class="progress-dot"
+                id="dot5"
+            ></div>
+
+            <div
+                class="progress-dot"
+                id="dot6"
+            ></div>
+
         </div>
 
 
         <!-- =================================================
-             3D SCENE
+             ORIGAMI STAGE
         ================================================== -->
 
         <div
             class="scene"
             id="scene"
-            role="button"
             tabindex="0"
-            aria-label="Interactive origami paper"
+            role="button"
+            aria-label="Interactive origami crane"
         >
 
             <!-- =================================================
-                 PAPER
+                 FLAT PAPER
             ================================================== -->
 
             <div
@@ -149,44 +155,33 @@
                 id="paper"
             >
 
-                <!-- =========================================
-                     CENTER PANEL
-                ========================================== -->
+                <!-- Main sheet -->
 
-                <div class="panel center">
-
+                <div class="sheet sheet-main">
                     <div class="corner tl"></div>
                     <div class="corner tr"></div>
                     <div class="corner bl"></div>
                     <div class="corner br"></div>
 
+                    <div class="paper-lines"></div>
                 </div>
 
 
-                <!-- =========================================
-                     LEFT PANEL
-                ========================================== -->
+                <!-- Vertical fold panels -->
 
-                <div class="panel left"></div>
-
-
-                <!-- =========================================
-                     RIGHT PANEL
-                ========================================== -->
-
-                <div class="panel right"></div>
+                <div class="sheet fold-left"></div>
+                <div class="sheet fold-right"></div>
 
 
-                <!-- =========================================
-                     TOP FOLD PANEL
-                ========================================== -->
+                <!-- Horizontal fold panels -->
 
-                <div class="panel top"></div>
+                <div class="sheet fold-top"></div>
+                <div class="sheet fold-bottom"></div>
 
 
-                <!-- =========================================
-                     LETTER CONTENT
-                ========================================== -->
+                <!-- =================================================
+                     LETTER
+                ================================================== -->
 
                 <div
                     class="letter-content"
@@ -199,12 +194,12 @@
                             A letter for you
                         </div>
 
-                        <div
+                        <h2
                             class="letter-title"
                             id="displayTitle"
                         >
                             A little message
-                        </div>
+                        </h2>
 
                         <div
                             class="message-preview"
@@ -225,17 +220,73 @@
                 </div>
 
 
-                <!-- =========================================
-                     FINAL ORIGAMI SYMBOL
-                ========================================== -->
+                <!-- =================================================
+                     CRANE
+                ================================================== -->
 
-                <div class="final-mark">
+                <div
+                    class="crane"
+                    id="crane"
+                    aria-hidden="true"
+                >
 
-                    <span></span>
+                    <!-- Left wing -->
 
-                    <b>
-                        ✦
-                    </b>
+                    <div class="crane-part crane-wing-left">
+
+                        <div class="wing-feather feather-1"></div>
+                        <div class="wing-feather feather-2"></div>
+                        <div class="wing-feather feather-3"></div>
+
+                    </div>
+
+
+                    <!-- Right wing -->
+
+                    <div class="crane-part crane-wing-right">
+
+                        <div class="wing-feather feather-1"></div>
+                        <div class="wing-feather feather-2"></div>
+                        <div class="wing-feather feather-3"></div>
+
+                    </div>
+
+
+                    <!-- Body -->
+
+                    <div class="crane-part crane-body">
+
+                        <div class="body-fold"></div>
+
+                    </div>
+
+
+                    <!-- Neck -->
+
+                    <div class="crane-part crane-neck">
+
+                        <div class="neck-fold"></div>
+
+                    </div>
+
+
+                    <!-- Head -->
+
+                    <div class="crane-part crane-head">
+
+                        <div class="beak"></div>
+
+                    </div>
+
+
+                    <!-- Tail -->
+
+                    <div class="crane-part crane-tail"></div>
+
+
+                    <!-- Chest -->
+
+                    <div class="crane-part crane-chest"></div>
 
                 </div>
 
@@ -245,16 +296,13 @@
 
 
         <!-- =================================================
-             INSTRUCTION
+             INSTRUCTIONS
         ================================================== -->
 
-        <div
-            class="instruction"
-            id="instruction"
-        >
+        <div class="instruction">
 
             <span id="instructionSmall">
-                Tap the paper
+                Tap or swipe the paper
             </span>
 
             <strong id="instructionMain">
@@ -277,7 +325,7 @@
         </span>
 
         <span>
-            Touch • Click • Swipe
+            Fold into a crane
         </span>
 
     </footer>
@@ -286,7 +334,7 @@
 
 
 <!-- =========================================================
-     WRITE LETTER MODAL
+     WRITING MODAL
 ========================================================== -->
 
 <div
@@ -297,10 +345,10 @@
     <div class="write-card">
 
         <button
-            type="button"
             class="close-write"
             id="closeWrite"
-            aria-label="Close letter editor"
+            type="button"
+            aria-label="Close"
         >
             ×
         </button>
@@ -311,12 +359,10 @@
         </h2>
 
         <p>
-            Enter your message below. It will appear on the
-            digital paper before it is folded.
+            Write your message before folding the paper
+            into a crane.
         </p>
 
-
-        <!-- Title -->
 
         <div class="field">
 
@@ -325,36 +371,32 @@
             </label>
 
             <input
-                type="text"
-                class="input"
                 id="titleInput"
+                class="input"
+                type="text"
                 maxlength="50"
                 value="A little message"
-                placeholder="Give your letter a title"
+                placeholder="Your title"
             >
 
         </div>
 
 
-        <!-- Message -->
-
         <div class="field">
 
             <label for="messageInput">
-                Your message
+                Message
             </label>
 
             <textarea
-                class="textarea"
                 id="messageInput"
+                class="textarea"
                 maxlength="1200"
-                placeholder="Write your message here..."
+                placeholder="Write your message..."
             >Your message will appear here.</textarea>
 
         </div>
 
-
-        <!-- Signature -->
 
         <div class="field">
 
@@ -363,9 +405,9 @@
             </label>
 
             <input
-                type="text"
-                class="input"
                 id="signatureInput"
+                class="input"
+                type="text"
                 maxlength="40"
                 value="From me"
                 placeholder="Your name"
@@ -374,21 +416,19 @@
         </div>
 
 
-        <!-- Form footer -->
-
         <div class="write-footer">
 
-            <div
-                class="character-count"
+            <span
                 id="characterCount"
+                class="character-count"
             >
                 0 / 1200
-            </div>
+            </span>
 
             <button
-                type="button"
-                class="btn primary"
                 id="saveLetter"
+                class="btn primary"
+                type="button"
             >
                 Place on paper
             </button>
@@ -407,16 +447,10 @@
 <div
     class="toast"
     id="toast"
-    role="status"
-    aria-live="polite"
 >
-    Copied!
+    Letter link copied.
 </div>
 
-
-<!-- =========================================================
-     JAVASCRIPT
-========================================================== -->
 
 <script>
 
@@ -424,7 +458,7 @@
 
 
 /* =========================================================
-   ELEMENT REFERENCES
+   ELEMENTS
 ========================================================= */
 
 const paper =
@@ -436,14 +470,11 @@ const scene =
 const paperShadow =
     document.getElementById("paperShadow");
 
-const instructionSmall =
-    document.getElementById("instructionSmall");
-
-const instructionMain =
-    document.getElementById("instructionMain");
-
 const writeButton =
     document.getElementById("writeButton");
+
+const shareButton =
+    document.getElementById("shareButton");
 
 const writeOverlay =
     document.getElementById("writeOverlay");
@@ -475,17 +506,24 @@ const displayMessage =
 const displaySignature =
     document.getElementById("displaySignature");
 
-const shareButton =
-    document.getElementById("shareButton");
+const instructionSmall =
+    document.getElementById("instructionSmall");
+
+const instructionMain =
+    document.getElementById("instructionMain");
 
 const toast =
     document.getElementById("toast");
+
 
 const dots = [
     document.getElementById("dot0"),
     document.getElementById("dot1"),
     document.getElementById("dot2"),
-    document.getElementById("dot3")
+    document.getElementById("dot3"),
+    document.getElementById("dot4"),
+    document.getElementById("dot5"),
+    document.getElementById("dot6")
 ];
 
 
@@ -495,19 +533,20 @@ const dots = [
 
 let foldState = 0;
 
-let touchStartX = null;
-let touchStartY = null;
+let startX = null;
+let startY = null;
 
 let toastTimer = null;
 
 
 /* =========================================================
-   LETTER
+   LETTER DATA
 ========================================================= */
 
 let letter = {
 
-    title: "A little message",
+    title:
+        "A little message",
 
     message:
         "Your message will appear here.",
@@ -529,10 +568,12 @@ function loadLetter() {
             window.location.search
         );
 
+
     const hasSharedLetter =
         params.has("title") ||
         params.has("message") ||
         params.has("from");
+
 
     if (hasSharedLetter) {
 
@@ -550,26 +591,27 @@ function loadLetter() {
 
     } else {
 
-        const saved =
+        const stored =
             localStorage.getItem(
-                "origamiLetter"
+                "origamiCraneLetter"
             );
 
-        if (saved) {
+
+        if (stored) {
 
             try {
 
-                const parsed =
-                    JSON.parse(saved);
+                const saved =
+                    JSON.parse(stored);
 
                 if (
-                    parsed &&
-                    typeof parsed === "object"
+                    saved &&
+                    typeof saved === "object"
                 ) {
 
                     letter = {
                         ...letter,
-                        ...parsed
+                        ...saved
                     };
 
                 }
@@ -577,7 +619,7 @@ function loadLetter() {
             } catch (error) {
 
                 console.warn(
-                    "Saved letter could not be loaded."
+                    "Could not load saved letter."
                 );
 
             }
@@ -586,13 +628,14 @@ function loadLetter() {
 
     }
 
+
     updateLetterDisplay();
 
 }
 
 
 /* =========================================================
-   UPDATE DISPLAY
+   DISPLAY LETTER
 ========================================================= */
 
 function updateLetterDisplay() {
@@ -612,6 +655,7 @@ function updateLetterDisplay() {
             "From me"
         );
 
+
     titleInput.value =
         letter.title || "";
 
@@ -620,6 +664,7 @@ function updateLetterDisplay() {
 
     signatureInput.value =
         letter.signature || "";
+
 
     updateCharacterCount();
 
@@ -637,6 +682,7 @@ function updateCharacterCount() {
 
 }
 
+
 messageInput.addEventListener(
     "input",
     updateCharacterCount
@@ -644,7 +690,7 @@ messageInput.addEventListener(
 
 
 /* =========================================================
-   OPEN WRITER
+   WRITER
 ========================================================= */
 
 function openWriter() {
@@ -663,10 +709,6 @@ function openWriter() {
 }
 
 
-/* =========================================================
-   CLOSE WRITER
-========================================================= */
-
 function closeWriter() {
 
     writeOverlay.classList.remove(
@@ -681,15 +723,12 @@ writeButton.addEventListener(
     openWriter
 );
 
+
 closeWrite.addEventListener(
     "click",
     closeWriter
 );
 
-
-/* =========================================================
-   CLICK OUTSIDE WRITER
-========================================================= */
 
 writeOverlay.addEventListener(
     "click",
@@ -734,7 +773,7 @@ saveLetter.addEventListener(
 
 
         localStorage.setItem(
-            "origamiLetter",
+            "origamiCraneLetter",
             JSON.stringify(letter)
         );
 
@@ -746,7 +785,7 @@ saveLetter.addEventListener(
         setFoldState(0);
 
         showToast(
-            "Your letter is ready."
+            "Your crane letter is ready."
         );
 
     }
@@ -763,7 +802,7 @@ function setFoldState(state) {
         Math.max(
             0,
             Math.min(
-                3,
+                6,
                 state
             )
         );
@@ -772,32 +811,17 @@ function setFoldState(state) {
     paper.classList.remove(
         "fold-1",
         "fold-2",
-        "fold-3"
+        "fold-3",
+        "fold-4",
+        "fold-5",
+        "fold-6"
     );
 
 
-    if (foldState === 1) {
+    if (foldState > 0) {
 
         paper.classList.add(
-            "fold-1"
-        );
-
-    }
-
-
-    if (foldState === 2) {
-
-        paper.classList.add(
-            "fold-2"
-        );
-
-    }
-
-
-    if (foldState === 3) {
-
-        paper.classList.add(
-            "fold-3"
+            `fold-${foldState}`
         );
 
     }
@@ -807,18 +831,18 @@ function setFoldState(state) {
 
     updateInstruction();
 
-    updatePaperShadow();
+    updateShadow();
 
 }
 
 
 /* =========================================================
-   NEXT FOLD
+   NEXT / PREVIOUS
 ========================================================= */
 
 function nextFold() {
 
-    if (foldState < 3) {
+    if (foldState < 6) {
 
         setFoldState(
             foldState + 1
@@ -832,10 +856,6 @@ function nextFold() {
 
 }
 
-
-/* =========================================================
-   PREVIOUS FOLD
-========================================================= */
 
 function previousFold() {
 
@@ -851,17 +871,12 @@ function previousFold() {
 
 
 /* =========================================================
-   MOUSE CLICK
+   CLICK
 ========================================================= */
 
 scene.addEventListener(
     "click",
     event => {
-
-        /*
-         * Ignore clicks on actual form controls
-         * if any are ever placed inside the scene.
-         */
 
         if (
             event.target.closest(
@@ -878,7 +893,7 @@ scene.addEventListener(
 
 
 /* =========================================================
-   KEYBOARD ACCESSIBILITY
+   KEYBOARD
 ========================================================= */
 
 scene.addEventListener(
@@ -909,16 +924,15 @@ scene.addEventListener(
     event => {
 
         if (
-            !event.touches ||
             !event.touches.length
         ) {
             return;
         }
 
-        touchStartX =
+        startX =
             event.touches[0].clientX;
 
-        touchStartY =
+        startY =
             event.touches[0].clientY;
 
     },
@@ -937,9 +951,8 @@ scene.addEventListener(
     event => {
 
         if (
-            touchStartX === null ||
-            touchStartY === null ||
-            !event.changedTouches ||
+            startX === null ||
+            startY === null ||
             !event.changedTouches.length
         ) {
             return;
@@ -949,70 +962,46 @@ scene.addEventListener(
         const touch =
             event.changedTouches[0];
 
-        const endX =
-            touch.clientX;
 
-        const endY =
-            touch.clientY;
+        const dx =
+            touch.clientX -
+            startX;
 
-
-        const deltaX =
-            endX - touchStartX;
-
-        const deltaY =
-            endY - touchStartY;
+        const dy =
+            touch.clientY -
+            startY;
 
 
         const distance =
             Math.sqrt(
-                deltaX * deltaX +
-                deltaY * deltaY
+                dx * dx +
+                dy * dy
             );
 
-
-        /*
-         * A very small movement is treated
-         * as a tap.
-         */
 
         if (distance < 30) {
 
             nextFold();
 
-        } else {
+        } else if (
+            dx < -30 ||
+            dy < -30
+        ) {
 
-            /*
-             * Swipe left/up = fold
-             */
+            nextFold();
 
-            if (
-                deltaX < -30 ||
-                deltaY < -30
-            ) {
+        } else if (
+            dx > 30 ||
+            dy > 30
+        ) {
 
-                nextFold();
-
-            }
-
-
-            /*
-             * Swipe right/down = unfold
-             */
-
-            if (
-                deltaX > 30 ||
-                deltaY > 30
-            ) {
-
-                previousFold();
-
-            }
+            previousFold();
 
         }
 
 
-        touchStartX = null;
-        touchStartY = null;
+        startX = null;
+        startY = null;
 
     },
     {
@@ -1022,7 +1011,7 @@ scene.addEventListener(
 
 
 /* =========================================================
-   DOUBLE CLICK = FULL UNFOLD
+   DOUBLE CLICK = UNFOLD
 ========================================================= */
 
 paper.addEventListener(
@@ -1063,80 +1052,87 @@ function updateProgress() {
 
 function updateInstruction() {
 
-    switch (foldState) {
+    const instructions = [
 
-        case 0:
+        [
+            "Tap or swipe the paper",
+            "Fold"
+        ],
 
-            instructionSmall.textContent =
-                "Tap or swipe the paper";
+        [
+            "Fold the sides inward",
+            "Fold sides"
+        ],
 
-            instructionMain.textContent =
-                "Fold";
+        [
+            "Create the diamond base",
+            "Fold"
+        ],
 
-            break;
+        [
+            "Lift the long points",
+            "Raise"
+        ],
+
+        [
+            "Shape the wings",
+            "Open wings"
+        ],
+
+        [
+            "Shape the neck and tail",
+            "Shape crane"
+        ],
+
+        [
+            "Your letter is now a crane",
+            "Complete"
+        ]
+
+    ];
 
 
-        case 1:
+    instructionSmall.textContent =
+        instructions[foldState][0];
 
-            instructionSmall.textContent =
-                "Continue folding";
-
-            instructionMain.textContent =
-                "Fold again";
-
-            break;
-
-
-        case 2:
-
-            instructionSmall.textContent =
-                "Almost there";
-
-            instructionMain.textContent =
-                "Complete";
-
-            break;
-
-
-        case 3:
-
-            instructionSmall.textContent =
-                "Tap or swipe to reopen";
-
-            instructionMain.textContent =
-                "Unfold";
-
-            break;
-
-    }
+    instructionMain.textContent =
+        instructions[foldState][1];
 
 }
 
 
 /* =========================================================
-   PAPER SHADOW
+   SHADOW
 ========================================================= */
 
-function updatePaperShadow() {
+function updateShadow() {
 
     const scale =
-        1 -
-        foldState * 0.17;
+        Math.max(
+            .45,
+            1 -
+            foldState * .08
+        );
+
 
     const y =
         145 -
-        foldState * 16;
+        foldState * 10;
+
 
     const opacity =
-        1 -
-        foldState * 0.12;
+        Math.max(
+            .35,
+            1 -
+            foldState * .08
+        );
 
 
     paperShadow.style.transform =
         `translateY(${y}px) scale(${scale})`;
 
     paperShadow.style.opacity =
-        String(opacity);
+        opacity;
 
 }
 
@@ -1171,16 +1167,12 @@ shareButton.addEventListener(
         );
 
 
-        const shareURL =
+        const url =
             window.location.origin +
             window.location.pathname +
             "?" +
             params.toString();
 
-
-        /*
-         * Native mobile sharing.
-         */
 
         if (
             navigator.share
@@ -1194,10 +1186,9 @@ shareButton.addEventListener(
                         letter.title,
 
                     text:
-                        "A digital origami letter",
+                        "A digital origami crane letter",
 
-                    url:
-                        shareURL
+                    url
 
                 });
 
@@ -1206,12 +1197,9 @@ shareButton.addEventListener(
             } catch (error) {
 
                 if (
-                    error &&
                     error.name === "AbortError"
                 ) {
-
                     return;
-
                 }
 
             }
@@ -1219,14 +1207,10 @@ shareButton.addEventListener(
         }
 
 
-        /*
-         * Clipboard fallback.
-         */
-
         try {
 
             await navigator.clipboard.writeText(
-                shareURL
+                url
             );
 
             showToast(
@@ -1237,7 +1221,7 @@ shareButton.addEventListener(
 
             window.prompt(
                 "Copy this letter link:",
-                shareURL
+                url
             );
 
         }
@@ -1254,19 +1238,10 @@ document.addEventListener(
     "keydown",
     event => {
 
-        const activeElement =
-            document.activeElement;
-
         const tag =
-            activeElement
-                ? activeElement.tagName
-                : "";
+            document.activeElement
+                ?.tagName;
 
-
-        /*
-         * Don't intercept keyboard input
-         * while typing the letter.
-         */
 
         if (
             tag === "INPUT" ||
@@ -1278,55 +1253,51 @@ document.addEventListener(
         }
 
 
-        if (
-            event.key === "ArrowRight" ||
-            event.key === "ArrowDown"
-        ) {
+        switch (event.key) {
 
-            event.preventDefault();
+            case "ArrowRight":
+            case "ArrowDown":
 
-            nextFold();
+                event.preventDefault();
 
-        }
+                nextFold();
 
-
-        if (
-            event.key === "ArrowLeft" ||
-            event.key === "ArrowUp"
-        ) {
-
-            event.preventDefault();
-
-            previousFold();
-
-        }
+                break;
 
 
-        if (
-            event.key === " "
-        ) {
+            case "ArrowLeft":
+            case "ArrowUp":
 
-            event.preventDefault();
+                event.preventDefault();
 
-            nextFold();
+                previousFold();
 
-        }
-
-
-        if (
-            event.key.toLowerCase() === "w"
-        ) {
-
-            openWriter();
-
-        }
+                break;
 
 
-        if (
-            event.key === "Escape"
-        ) {
+            case " ":
 
-            closeWriter();
+                event.preventDefault();
+
+                nextFold();
+
+                break;
+
+
+            case "w":
+
+            case "W":
+
+                openWriter();
+
+                break;
+
+
+            case "Escape":
+
+                closeWriter();
+
+                break;
 
         }
 
@@ -1366,46 +1337,6 @@ function showToast(message) {
         );
 
 }
-
-
-/* =========================================================
-   ESCAPE HTML FOR URL-SHARED CONTENT
-========================================================= */
-
-function sanitizeSharedText(value) {
-
-    if (
-        typeof value !== "string"
-    ) {
-        return "";
-    }
-
-    return value.trim();
-
-}
-
-
-/* =========================================================
-   PRINT SUPPORT
-========================================================= */
-
-window.addEventListener(
-    "beforeprint",
-    () => {
-
-        /*
-         * Always show the full letter
-         * when printing.
-         */
-
-        paper.classList.remove(
-            "fold-1",
-            "fold-2",
-            "fold-3"
-        );
-
-    }
-);
 
 
 /* =========================================================
